@@ -13,6 +13,22 @@ const STORE_CONFIG = {
         "أسود",
         "رمادي"
       ]
+    },
+    "20": {
+      "name": "sdegg",
+      "price": 75555,
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-20-1763507188438-1000056027.jpg",
+      "description": "",
+      "availableSizes": [
+        "S1",
+        "XXL"
+      ],
+      "availableColors": [
+        "كما في الصورة",
+        "أسود"
+      ],
+      "ageRanges": [],
+      "colorImages": {}
     }
   },
   "DELIVERY_PRICES": {
@@ -255,7 +271,10 @@ const STORE_CONFIG = {
     "discountProducts": [
       19
     ],
-    "discountScope": "selected"
+    "discountScope": "selected",
+    "promoDiscountProducts": [
+      20
+    ]
   },
   "STORE_INFO": {
     "name": "BENAKRAB-Shopp",
@@ -267,15 +286,7 @@ const STORE_CONFIG = {
     "storeIcon": "👗🛍️",
     "storeTitle": "أحدث موديلات الأطفال"
   },
-  "AGE_SIZES": {
-    "6": "S1",
-    "7": "S2",
-    "8": "M",
-    "9": "L",
-    "10": "XL",
-    "11": "XXL",
-    "12": "S4"
-  },
+  "GOOGLE_SHEETS": {},
   "AVAILABLE_COLORS": [
     "كما في الصورة",
     "أبيض",
@@ -295,7 +306,6 @@ const STORE_CONFIG = {
     "XL",
     "XXL"
   ],
-  "GOOGLE_SHEETS": {},
   "SIZE_GUIDE": {
     "S1": {
       "heightFrom": 160,
@@ -339,5 +349,14 @@ const STORE_CONFIG = {
       "weightTo": 120,
       "enabled": true
     }
+  },
+  "AGE_SIZES": {
+    "6": "S1",
+    "7": "S2",
+    "8": "M",
+    "9": "L",
+    "10": "XL",
+    "11": "XXL",
+    "12": "S4"
   }
 };
