@@ -286,7 +286,10 @@ const STORE_CONFIG = {
     "storeIcon": "👗🛍️",
     "storeTitle": "أحدث موديلات الأطفال"
   },
-  "GOOGLE_SHEETS": {},
+  "GOOGLE_SHEETS": {
+    "url": "https://docs.google.com/spreadsheets/d/1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw/edit?gid=1320228317#gid=1320228317",
+    "autoUpdate": true
+  },
   "AVAILABLE_COLORS": [
     "كما في الصورة",
     "أبيض",
