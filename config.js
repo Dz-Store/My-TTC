@@ -3,14 +3,15 @@ const STORE_CONFIG = {
     "19": {
       "name": "مودال 1",
       "price": 8400,
-      "image": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-19-1761774285629-modal7.jpg.webp",
-      "description": "فستان سندريلا",
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-19-1763505376624-1000056031.jpg",
+      "description": "dfgh",
       "availableSizes": [
         "M",
         "S2"
       ],
       "availableColors": [
-        "كما في الصورة"
+        "أسود",
+        "رمادي"
       ]
     },
     "20": {
@@ -22,21 +23,6 @@ const STORE_CONFIG = {
         "S1",
         "S2",
         "M"
-      ],
-      "availableColors": [
-        "كما في الصورة"
-      ]
-    },
-    "21": {
-      "name": "مودال 3",
-      "price": 4000,
-      "image": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-21-1761838155562-modal5.jpg",
-      "description": "مودال تركي بتفصيلات عصرية",
-      "availableSizes": [
-        "S1",
-        "S2",
-        "M",
-        "L"
       ],
       "availableColors": [
         "كما في الصورة"
@@ -282,7 +268,7 @@ const STORE_CONFIG = {
     "discountPerItem": 400,
     "discountProducts": [
       20,
-      21
+      19
     ],
     "discountScope": "selected"
   },
