@@ -277,14 +277,16 @@ const STORE_CONFIG = {
     ]
   },
   "STORE_INFO": {
-    "name": "BENAKRAB-Shopp",
+    "name": "إسم المتجر",
     "tagline": "متجر أفخم الملابس",
     "phoneNumbers": [
       "0671466489",
       "0792946548"
     ],
-    "storeIcon": "👗🛍️",
-    "storeTitle": "أحدث موديلات الأطفال"
+    "storeIcon": "👗🛍️ الشعار",
+    "storeTitle": "وصف لعوان البوتيك",
+    "whatsappNumber": "",
+    "whatsappUrl": ""
   },
   "GOOGLE_SHEETS": {
     "url": "https://docs.google.com/spreadsheets/d/1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw/edit?gid=1320228317#gid=1320228317",
