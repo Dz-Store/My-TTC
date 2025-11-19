@@ -2824,7 +2824,7 @@
                 
                 if (applyQuantityDiscount && quantity >= minQuantity) {
                     discountAmount = discountPerItem * quantity;
-                    finalPrice = Math.max(originalPrice , 0);
+                    finalPrice = Math.max(originalPrice- discountAmount , 0);
                     hasDiscount = true;
                 }
             }
