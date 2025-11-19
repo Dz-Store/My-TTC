@@ -3,7 +3,7 @@ const STORE_CONFIG = {
     "4": {
       "name": "Nike Baggy Jogger",
       "price": 5800,
-      "image": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-1763217318680-modal1.jpeg",
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-1763217318680-modal1.jpeg",
       "description": " Nike Baggy Jogger  نوعية رفيعة بلونين مختلفين",
       "availableSizes": [],
       "availableColors": [
@@ -14,7 +14,7 @@ const STORE_CONFIG = {
       "colorImages": {
         "أسود": {
           "images": [
-            "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-أسود-1763314062749-modal1.jpeg"
+            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-أسود-1763314062749-modal1.jpeg"
           ],
           "ageRanges": [
             {
@@ -31,7 +31,7 @@ const STORE_CONFIG = {
         },
         "رمادي": {
           "images": [
-            "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-رمادي-1763314176653-modal2.jpeg"
+            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-رمادي-1763314176653-modal2.jpeg"
           ],
           "ageRanges": [
             {
@@ -336,7 +336,7 @@ const STORE_CONFIG = {
     "instagramUrl": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
     "messengerUrl": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
     "viberNumber": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
-    "logo": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/store-logo-1763217953279-Screenshot_20250903-115403_Facebook.jpg",
+    "logo": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/store-logo-1763217953279-Screenshot_20250903-115403_Facebook.jpg",
     "storeEmail": "benaakrabahcene@gmail.com",
     "storeDescription": "متجر Kids-Fav يقدم أحدث وأفخم موديلات ملابس الأطفال بتصاميم عصرية وأنيقة تناسب جميع المناسبات",
     "whatsappUrl": "https://wa.me/213671466489",
@@ -562,7 +562,7 @@ const STORE_CONFIG = {
       "name": "الاحمر",
       "price": 3000,
       "images": [
-        "https://raw.githubusercontent.com/Dz-Store/WER/main/images/color-1-1762969529778-1000043662.jpg"
+        "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/color-1-1762969529778-1000043662.jpg"
       ],
       "description": "مودال جيد بمواصفات أوربية",
       "availableSizes": [
@@ -586,7 +586,7 @@ const STORE_CONFIG = {
       "name": "ازرق",
       "price": 3000,
       "images": [
-        "https://raw.githubusercontent.com/Dz-Store/WER/main/images/color-2-1762969972266-1000041608.jpg"
+        "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/color-2-1762969972266-1000041608.jpg"
       ],
       "description": "مودال بمواصفات اوربية",
       "availableSizes": [
@@ -631,7 +631,7 @@ const STORE_CONFIG = {
   },
   "GITHUB_INTEGRATION": {
     "enabled": true,
-    "defaultRepo": "Dz-Store/WER",
+    "defaultRepo": "Dz-Store/My-TTC",
     "defaultBranch": "main",
     "defaultFolder": "images"
   },
