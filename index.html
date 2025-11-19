@@ -2942,7 +2942,7 @@
             }
             
             if (quantity >= minQuantity) {
-                const totalDiscount = discountPerItem * quantity;
+                const totalDiscount = itemDiscountInfo.finalPrice * quantity;
                 return `🎁 <strong>خصم كمية ${discountPerItem } دج للقطعة</strong> - وفر ${totalDiscount} دج`;
             } else {
                 const remaining = minQuantity - quantity;
