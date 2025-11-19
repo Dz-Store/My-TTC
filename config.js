@@ -31,11 +31,6 @@ const STORE_CONFIG = {
               "ageFrom": "A",
               "ageTo": "A",
               "size": "L"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "XL"
             }
           ]
         },
