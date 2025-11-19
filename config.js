@@ -2,15 +2,10 @@ const STORE_CONFIG = {
   "PRODUCTS": {
     "4": {
       "name": "Nike Baggy Jogger",
-      "price": 5000,
-      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-1763217318680-modal1.jpeg",
+      "price": 5800,
+      "image": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-1763217318680-modal1.jpeg",
       "description": " Nike Baggy Jogger  نوعية رفيعة بلونين مختلفين",
-      "availableSizes": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
+      "availableSizes": [],
       "availableColors": [
         "أسود",
         "رمادي"
@@ -19,24 +14,7 @@ const STORE_CONFIG = {
       "colorImages": {
         "أسود": {
           "images": [
-            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-أسود-1763314062749-modal1.jpeg"
-          ],
-          "ageRanges": [
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "S"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "M"
-            }
-          ]
-        },
-        "رمادي": {
-          "images": [
-            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-رمادي-1763314176653-modal2.jpeg"
+            "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-أسود-1763314062749-modal1.jpeg"
           ],
           "ageRanges": [
             {
@@ -60,24 +38,25 @@ const STORE_CONFIG = {
               "size": "XL"
             }
           ]
+        },
+        "رمادي": {
+          "images": [
+            "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-رمادي-1763314176653-modal2.jpeg"
+          ],
+          "ageRanges": [
+            {
+              "ageFrom": "A",
+              "ageTo": "A",
+              "size": "S"
+            },
+            {
+              "ageFrom": "A",
+              "ageTo": "A",
+              "size": "M"
+            }
+          ]
         }
       }
-    },
-    "5": {
-      "name": "مودال 2",
-      "price": 5600,
-      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-1763549756272-modle6.jpg",
-      "description": "",
-      "availableSizes": [
-        "S",
-        "S1",
-        "S2"
-      ],
-      "availableColors": [
-        "أحمر"
-      ],
-      "ageRanges": [],
-      "colorImages": {}
     }
   },
   "DELIVERY_PRICES": {
@@ -310,7 +289,7 @@ const STORE_CONFIG = {
       "desk": 550
     },
     "58 - المنيعة": {
-      "home": 100,
+      "home": 900,
       "desk": 400
     }
   },
@@ -318,14 +297,12 @@ const STORE_CONFIG = {
     "minQuantityForDiscount": 1,
     "discountPerItem": 800,
     "discountScope": "selected",
-    "discountProducts": [
-      5
-    ],
+    "discountProducts": [],
     "promoDiscountProducts": [
       4
     ],
-    "enableQuantityDiscount": false,
-    "enablePromotionalDiscount": true,
+    "enableQuantityDiscount": true,
+    "enablePromotionalDiscount": false,
     "promotionalDiscountPercent": 20,
     "promotionalDiscountedPrice": null,
     "promoDiscountScope": "selected",
@@ -347,7 +324,7 @@ const STORE_CONFIG = {
     "instagramUrl": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
     "messengerUrl": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
     "viberNumber": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
-    "logo": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/store-logo-1763217953279-Screenshot_20250903-115403_Facebook.jpg",
+    "logo": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/store-logo-1763217953279-Screenshot_20250903-115403_Facebook.jpg",
     "storeEmail": "benaakrabahcene@gmail.com",
     "storeDescription": "متجر Kids-Fav يقدم أحدث وأفخم موديلات ملابس الأطفال بتصاميم عصرية وأنيقة تناسب جميع المناسبات",
     "whatsappUrl": "https://wa.me/213671466489",
@@ -549,7 +526,7 @@ const STORE_CONFIG = {
       "name": "الاحمر",
       "price": 3000,
       "images": [
-        "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/color-1-1762969529778-1000043662.jpg"
+        "https://raw.githubusercontent.com/Dz-Store/WER/main/images/color-1-1762969529778-1000043662.jpg"
       ],
       "description": "مودال جيد بمواصفات أوربية",
       "availableSizes": [
@@ -573,7 +550,7 @@ const STORE_CONFIG = {
       "name": "ازرق",
       "price": 3000,
       "images": [
-        "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/color-2-1762969972266-1000041608.jpg"
+        "https://raw.githubusercontent.com/Dz-Store/WER/main/images/color-2-1762969972266-1000041608.jpg"
       ],
       "description": "مودال بمواصفات اوربية",
       "availableSizes": [
@@ -618,7 +595,7 @@ const STORE_CONFIG = {
   },
   "GITHUB_INTEGRATION": {
     "enabled": true,
-    "defaultRepo": "Dz-Store/My-TTC",
+    "defaultRepo": "Dz-Store/WER",
     "defaultBranch": "main",
     "defaultFolder": "images"
   },
