@@ -377,7 +377,10 @@ const STORE_CONFIG = {
     "44",
     "45",
     "45",
-    "46"
+    "46",
+    "47",
+    "48",
+    "49"
   ],
   "SIZE_GUIDE": {
     "38": {
@@ -442,6 +445,27 @@ const STORE_CONFIG = {
       "weightFrom": 74,
       "weightTo": 102,
       "enabled": false
+    },
+    "47": {
+      "heightFrom": 168,
+      "heightTo": 178,
+      "weightFrom": 77,
+      "weightTo": 106,
+      "enabled": true
+    },
+    "48": {
+      "heightFrom": 170,
+      "heightTo": 180,
+      "weightFrom": 80,
+      "weightTo": 110,
+      "enabled": true
+    },
+    "49": {
+      "heightFrom": 172,
+      "heightTo": 182,
+      "weightFrom": 83,
+      "weightTo": 114,
+      "enabled": true
     },
     "S": {
       "heightFrom": 160,
