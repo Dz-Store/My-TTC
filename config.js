@@ -26,11 +26,6 @@ const STORE_CONFIG = {
               "ageFrom": "A",
               "ageTo": "A",
               "size": "M"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "L"
             }
           ]
         },
@@ -53,11 +48,18 @@ const STORE_CONFIG = {
               "ageFrom": "A",
               "ageTo": "A",
               "size": "L"
-            },
+            }
+          ]
+        },
+        "أخضر": {
+          "images": [
+            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-أخضر-1763577384417-1000056031.jpg"
+          ],
+          "ageRanges": [
             {
               "ageFrom": "A",
               "ageTo": "A",
-              "size": "XL"
+              "size": "S"
             }
           ]
         }
