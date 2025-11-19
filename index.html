@@ -2943,7 +2943,7 @@
             
             if (quantity >= minQuantity) {
                 const totalDiscount = discountPerItem * quantity;
-                return `🎁 <strong>خصم كمية ${discountPerItem * quantity} دج للقطعة</strong> - وفر ${totalDiscount} دج`;
+                return `🎁 <strong>خصم كمية ${discountPerItem } دج للقطعة</strong> - وفر ${totalDiscount} دج`;
             } else {
                 const remaining = minQuantity - quantity;
                 return `💡 <strong>خصم كمية متاح</strong> - إشتري ${remaining} قطع إضافية لتحصل على خصم ${discountPerItem} دج لكل قطعة`;
@@ -3436,14 +3436,26 @@
                 
                 // حساب الخصم لكل عنصر - التصحيح: استخدام الكمية الإجمالية
                 const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-                const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, item.key);
+              /*   const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, item.key);
                 if (item.quantity === 1) {
     // لو الكمية واحدة ننقص قيمة الخصم
     itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice* ;
 } else {
     // لو الكمية لا تساوي 1 (يعني أكبر من 1)
     itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice;
+} */
+// حساب الخصم لكل عنصر بشكل ثابت
+const itemDiscountInfo = calculateDiscountedPrice(item.price, 1, item.key);
+
+// إذا أردت أن تطبق الخصم فقط عند وجود كمية واحدة
+if (item.quantity === 1) {
+    itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice - itemDiscountInfo.discountAmount;
+} else {
+    // لو الكمية أكبر من 1، يبقى نفس السعر المخصوم ثابت
+    itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice;
 }
+
+                    
                 const hasDiscount = itemDiscountInfo.hasDiscount || itemDiscountInfo.hasPromoDiscount;
                 
                 productElement.innerHTML = `
