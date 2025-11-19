@@ -2670,6 +2670,7 @@
                         saveConfig();
                         showNotification(`تم حذف نطاق الأعمار للون ${color}`, 'success');
                         loadProductsManagement();
+                        reloadProductManagementWithActiveTab(productId, color);
                     }
                 }
             );
