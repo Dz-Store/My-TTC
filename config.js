@@ -2,10 +2,15 @@ const STORE_CONFIG = {
   "PRODUCTS": {
     "4": {
       "name": "Nike Baggy Jogger",
-      "price": 5800,
+      "price": 5000,
       "image": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-1763217318680-modal1.jpeg",
       "description": " Nike Baggy Jogger  نوعية رفيعة بلونين مختلفين",
-      "availableSizes": [],
+      "availableSizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "availableColors": [
         "أسود",
         "رمادي"
@@ -26,21 +31,6 @@ const STORE_CONFIG = {
               "ageFrom": "A",
               "ageTo": "A",
               "size": "M"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "L"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "XL"
-            },
-            {
-              "ageFrom": "12",
-              "ageTo": "14",
-              "size": "S1"
             }
           ]
         },
@@ -72,6 +62,22 @@ const STORE_CONFIG = {
           ]
         }
       }
+    },
+    "5": {
+      "name": "مودال 2",
+      "price": 5600,
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-1763549756272-modle6.jpg",
+      "description": "",
+      "availableSizes": [
+        "S",
+        "S1",
+        "S2"
+      ],
+      "availableColors": [
+        "أحمر"
+      ],
+      "ageRanges": [],
+      "colorImages": {}
     }
   },
   "DELIVERY_PRICES": {
@@ -304,7 +310,7 @@ const STORE_CONFIG = {
       "desk": 550
     },
     "58 - المنيعة": {
-      "home": 900,
+      "home": 100,
       "desk": 400
     }
   },
@@ -312,12 +318,14 @@ const STORE_CONFIG = {
     "minQuantityForDiscount": 1,
     "discountPerItem": 800,
     "discountScope": "selected",
-    "discountProducts": [],
+    "discountProducts": [
+      5
+    ],
     "promoDiscountProducts": [
       4
     ],
-    "enableQuantityDiscount": true,
-    "enablePromotionalDiscount": false,
+    "enableQuantityDiscount": false,
+    "enablePromotionalDiscount": true,
     "promotionalDiscountPercent": 20,
     "promotionalDiscountedPrice": null,
     "promoDiscountScope": "selected",
