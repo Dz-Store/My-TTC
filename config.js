@@ -344,10 +344,10 @@ const STORE_CONFIG = {
   },
   "GOOGLE_SHEETS": {
     "enabled": true,
-    "scriptUrl": "https://script.google.com/macros/s/AKfycbzw7NSduBIcVc2ugUKF5EtpmAej7bo7bDFKj0K-aHeXaYmqWmoUYtvOPGX6TjRKKN78/exec",
-    "ordersSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
-    "productsSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
-    "url": "https://docs.google.com/spreadsheets/d/1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw/edit?usp=drivesdk",
+    "scriptUrl": "https://script.google.com/macros/s/AKfycbylqa6u7t92LnByhoutxCwFG7RSgmynM7O9o4UTbm5zY43lOVVdzZpnPubGitemnvVvvw/exec",
+    "ordersSheetId": "1ostnWuYQnG4KwkbKCRW1MHw5wJNBTAA8NsvIh7RIfx8",
+    "productsSheetId": "1ostnWuYQnG4KwkbKCRW1MHw5wJNBTAA8NsvIh7RIfx8",
+    "url": "https://docs.google.com/spreadsheets/d/1ostnWuYQnG4KwkbKCRW1MHw5wJNBTAA8NsvIh7RIfx8/edit?pli=1&gid=0#gid=0",
     "autoUpdate": true,
     "description": "جدول الطلبيات"
   },
