@@ -327,7 +327,7 @@ const STORE_CONFIG = {
     "name": "SANIX-DZ",
     "storeIcon": "👑",
     "storeTitle": "Nike Baggy  Jogger",
-    "tagline": "متجر أفخم الملابس",
+    "tagline": "متجر أفخم الملابس الرجالية",
     "phoneNumbers": [
       "0671466489",
       "0551102155"
