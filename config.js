@@ -62,6 +62,22 @@ const STORE_CONFIG = {
           ]
         }
       }
+    },
+    "5": {
+      "name": "مودال 2",
+      "price": 5600,
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-1763549756272-modle6.jpg",
+      "description": "",
+      "availableSizes": [
+        "S",
+        "S1",
+        "S2"
+      ],
+      "availableColors": [
+        "أحمر"
+      ],
+      "ageRanges": [],
+      "colorImages": {}
     }
   },
   "DELIVERY_PRICES": {
@@ -302,7 +318,9 @@ const STORE_CONFIG = {
     "minQuantityForDiscount": 1,
     "discountPerItem": 800,
     "discountScope": "selected",
-    "discountProducts": [],
+    "discountProducts": [
+      5
+    ],
     "promoDiscountProducts": [
       4
     ],
