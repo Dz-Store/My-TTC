@@ -2586,7 +2586,7 @@
                             }
                             
                             showNotification('تم حذف صورة اللون من GitHub والإعدادات', 'success');
-                            loadProductsManagement();
+                            reloadProductManagementWithActiveTab(productId, color);
                             
                         } else {
                             const errorData = await deleteResponse.json();
@@ -2669,8 +2669,8 @@
                         
                         saveConfig();
                         showNotification(`تم حذف نطاق الأعمار للون ${color}`, 'success');
-                        loadProductsManagement();
-                        reloadProductManagementWithActiveTab(productId, color);
+                        
+                     reloadProductManagementWithActiveTab(productId, color);   
                     }
                 }
             );
@@ -3710,7 +3710,7 @@
                         
                         saveConfig();
                         showNotification('تم حذف نطاق الأعمار للمنتج', 'success');
-                        loadProductsManagement();
+                       reloadProductManagementWithActiveTab(productId, color);
                     }
                 }
             );
@@ -4508,7 +4508,7 @@
             onAvailableSizesChanged();
             
             showNotification('تم حفظ القياسات المتاحة', 'success');
-            loadProductsManagement();
+            reloadProductManagementWithActiveTab(productId, color);
         }
 
         // الألوان المتاحة
@@ -4523,7 +4523,8 @@
             
             saveConfig();
             showNotification('تم حفظ الألوان المتاحة', 'success');
-            loadProductsManagement();
+            reloadProductManagementWithActiveTab(productId, color);
+            
         }
 
         // إدارة التوكنات
