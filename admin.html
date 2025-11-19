@@ -1967,6 +1967,51 @@
         // المستودع الافتراضي
         let defaultRepo = localStorage.getItem('default_repo') || '';
 
+        let activeColorTab = {};
+
+// دالة لتبديل التبويبات مع حفظ الحالة
+function switchColorTab(productId, color) {
+    activeColorTab[productId] = color;
+    
+    // إخفاء جميع المحتويات
+    document.querySelectorAll(`[id^="colorContent_${productId}_"]`).forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // إزالة النشط من جميع الألسنة
+    document.querySelectorAll(`#colorTabs_${productId} .color-age-sizes-tab`).forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // إظهار المحتوى المحدد
+    const contentElement = document.getElementById(`colorContent_${productId}_${color}`);
+    if (contentElement) {
+        contentElement.classList.add('active');
+    }
+    
+    // تفعيل اللسان المحدد
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
+}
+
+// دالة لإعادة التحميل مع الحفاظ على التبويب النشط
+function reloadProductManagementWithActiveTab(productId, activeColor = null) {
+    // حفظ اللون النشط إذا لم يتم تحديده
+    if (!activeColor && activeColorTab[productId]) {
+        activeColor = activeColorTab[productId];
+    }
+    
+    // إعادة تحميل إدارة المنتجات
+    loadProductsManagement();
+    
+    // بعد إعادة التحميل، تفعيل التبويب النشط
+    setTimeout(() => {
+        if (activeColor) {
+            switchColorTab(productId, activeColor);
+        }
+    }, 100);
+}
         // =============================================================================
         // 🔑 إصلاح مشكلة كلمة المرور - التصحيح الرئيسي
         // =============================================================================
@@ -2586,8 +2631,8 @@
                             }
                             
                             showNotification('تم حذف صورة اللون من GitHub والإعدادات', 'success');
-                            loadProductsManagement();
                             reloadProductManagementWithActiveTab(productId, color);
+                            
                             
                         } else {
                             const errorData = await deleteResponse.json();
@@ -2645,6 +2690,7 @@
                 
                 saveConfig();
                 showNotification(`تم تحديث نطاق الأعمار للون ${color}`, 'success');
+                reloadProductManagementWithActiveTab(productId, color);
             }
         }
 
@@ -2670,7 +2716,7 @@
                         
                         saveConfig();
                         showNotification(`تم حذف نطاق الأعمار للون ${color}`, 'success');
-                        loadProductsManagement();
+                        reloadProductManagementWithActiveTab(productId, color);
                     }
                 }
             );
@@ -2915,7 +2961,7 @@
             
             if (imageUrl) {
                 // تحديث العرض
-                loadProductsManagement();
+                reloadProductManagementWithActiveTab(productId, color);
                 
                 // مسح الحقول
                 fileInput.value = '';
@@ -2947,7 +2993,7 @@
             addColorAgeRange(productId, color, ageFrom, ageTo, size);
             
             // تحديث العرض
-            loadProductsManagement();
+           reloadProductManagementWithActiveTab(productId, color);
             
             // مسح الحقول
             ageFromInput.value = '';
