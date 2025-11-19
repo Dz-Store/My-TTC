@@ -314,13 +314,13 @@ const STORE_CONFIG = {
     "minQuantityForDiscount": 1,
     "discountPerItem": 800,
     "discountScope": "selected",
-    "discountProducts": [
+    "discountProducts": [],
+    "promoDiscountProducts": [
       4
     ],
-    "promoDiscountProducts": [],
-    "enableQuantityDiscount": true,
-    "enablePromotionalDiscount": false,
-    "promotionalDiscountPercent": 20,
+    "enableQuantityDiscount": false,
+    "enablePromotionalDiscount": true,
+    "promotionalDiscountPercent": 10,
     "promotionalDiscountedPrice": null,
     "promoDiscountScope": "selected",
     "promoDiscountColors": [
