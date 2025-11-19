@@ -5,15 +5,10 @@ const STORE_CONFIG = {
       "price": 5800,
       "image": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-1763217318680-modal1.jpeg",
       "description": " Nike Baggy Jogger  نوعية رفيعة بلونين مختلفين",
-      "availableSizes": [
-        "S",
-        "M",
-        "L"
-      ],
+      "availableSizes": [],
       "availableColors": [
         "أسود",
-        "رمادي",
-        "أخضر"
+        "رمادي"
       ],
       "ageRanges": [],
       "colorImages": {
@@ -318,8 +313,8 @@ const STORE_CONFIG = {
     "promoDiscountProducts": [
       4
     ],
-    "enableQuantityDiscount": false,
-    "enablePromotionalDiscount": true,
+    "enableQuantityDiscount": true,
+    "enablePromotionalDiscount": false,
     "promotionalDiscountPercent": 20,
     "promotionalDiscountedPrice": null,
     "promoDiscountScope": "selected",
