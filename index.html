@@ -3449,7 +3449,7 @@ const itemDiscountInfo = calculateDiscountedPrice(item.price, 1, item.key);
 
 // إذا أردت أن تطبق الخصم فقط عند وجود كمية واحدة
 if (item.quantity === 1) {
-    itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice - itemDiscountInfo.discountAmount;
+    itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice ;
 } else {
     // لو الكمية أكبر من 1، يبقى نفس السعر المخصوم ثابت
     itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice;
