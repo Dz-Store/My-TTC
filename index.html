@@ -3452,15 +3452,7 @@
 // حساب الخصم لكل عنصر بشكل ثابت
 const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, item.key);
 
-// إذا أردت أن تطبق الخصم فقط عند وجود كمية واحدة
-if (item.quantity === 1) {
-    itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice ;
-} else {
-    // لو الكمية أكبر من 1، يبقى نفس السعر المخصوم ثابت
-    itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice;
-}
-
-                    
+                  
                 const hasDiscount = itemDiscountInfo.hasDiscount || itemDiscountInfo.hasPromoDiscount;
                 
                 productElement.innerHTML = `
