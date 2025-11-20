@@ -2830,7 +2830,7 @@
             } */
                 if (applyQuantityDiscount && quantity >= minQuantity) {
     discountAmount = discountPerItem * quantity; 
-    finalPrice = Math.max((originalPrice * quantity) - discountAmount, 0);
+    finalPrice = Math.max(((originalPrice * quantity) - discountAmount)/quantity, 0);
     hasDiscount = true;
 }
     }         
