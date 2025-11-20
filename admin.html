@@ -1698,17 +1698,18 @@
                     <label>شعار المتجر (رمز التاج):</label>
                     <input type="text" id="storeIcon" placeholder="👑">
                 </div>
+                
                 <div class="form-group">
                     <label>عنوان المتجر الرئيسي:</label>
-                    <input type="text" id="storeTitle" placeholder="👑 أحدث موديلات الأطفال">
-                </div>
-                <div class="form-group">
-                    <label>شعار المتجر (النص):</label>
                     <input type="text" id="storeTagline" placeholder="متجر أفخم الملابس">
                 </div>
                 <div class="form-group">
                     <label>أرقام الهاتف (مفصولة بفاصلة):</label>
                     <input type="text" id="storePhones" placeholder="مثال: 0671466489, 0551102155">
+                </div>
+                <div class="form-group">
+                    <label>البريد الالكتروني:</label>
+                    <input type="text" id="storeEmail" placeholder="examle@gmail.com">
                 </div>
                 <!-- إضافة حقل رقم الواتساب -->
                 <div class="form-group">
@@ -1925,10 +1926,10 @@
             STORE_INFO: {
                 name: "متجر الأطفال",
                 storeIcon: "👑",
-                storeTitle: "👑 أحدث موديلات الأطفال",
                 tagline: "متجر أفخم الملابس",
                 phoneNumbers: ["0671466489", "0551102155"],
                 logo: "",
+                email: "",
                 facebookUrl: "",
                 instagramUrl: "",
                 messengerUrl: "",
@@ -4495,19 +4496,20 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
         function loadStoreInfo() {
             document.getElementById('storeName').value = CONFIG.STORE_INFO.name;
             document.getElementById('storeIcon').value = CONFIG.STORE_INFO.storeIcon || '👑';
-            document.getElementById('storeTitle').value = CONFIG.STORE_INFO.storeTitle || '👑 أحدث موديلات الأطفال';
             document.getElementById('storeTagline').value = CONFIG.STORE_INFO.tagline;
+            
             document.getElementById('storePhones').value = CONFIG.STORE_INFO.phoneNumbers.join(', ');
+            document.getElementById('storeEmail').value = CONFIG.STORE_INFO.email || ; // تحميل الايمايل
             document.getElementById('whatsappNumber').value = CONFIG.STORE_INFO.whatsappNumber || '';
         }
 
         function saveStoreInfo() {
             CONFIG.STORE_INFO.name = document.getElementById('storeName').value;
             CONFIG.STORE_INFO.storeIcon = document.getElementById('storeIcon').value;
-            CONFIG.STORE_INFO.storeTitle = document.getElementById('storeTitle').value;
+            
             CONFIG.STORE_INFO.tagline = document.getElementById('storeTagline').value;
             CONFIG.STORE_INFO.phoneNumbers = document.getElementById('storePhones').value.split(',').map(p => p.trim());
-            
+             CONFIG.STORE_INFO.email = document.getElementById('storeEmail').value;
             // حفظ رقم الواتساب وتحديث الرابط تلقائياً إذا لم يتم تحديده
             const whatsappNumber = document.getElementById('whatsappNumber').value;
             CONFIG.STORE_INFO.whatsappNumber = whatsappNumber;
