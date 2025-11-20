@@ -3450,7 +3450,7 @@
     itemDiscountInfo.finalPrice = itemDiscountInfo.finalPrice;
 } */
 // حساب الخصم لكل عنصر بشكل ثابت
-const itemDiscountInfo = calculateDiscountedPrice(item.price, 1, item.key);
+const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, item.key);
 
 // إذا أردت أن تطبق الخصم فقط عند وجود كمية واحدة
 if (item.quantity === 1) {
