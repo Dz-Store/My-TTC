@@ -331,8 +331,8 @@ const STORE_CONFIG = {
   "STORE_INFO": {
     "name": "SANIX-DZ",
     "storeIcon": "👑",
-    "storeTitle": "Nike Baggy  Jogger",
-    "tagline": "الملابس الأعلى مبيعا",
+    "storeTitle": "الملابس الأعلى مبيعا",
+    "tagline": "الملابس الأكثر مبيعا",
     "phoneNumbers": [
       "0671466489",
       "0551102155"
