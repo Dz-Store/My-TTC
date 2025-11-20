@@ -2823,7 +2823,8 @@
                 }
                 
                 if (applyQuantityDiscount && quantity >= minQuantity) {
-                    discountAmount = discountPerItem * quantity;
+                    /* discountAmount = discountPerItem * quantity; */
+                    discountAmount = Math.round(discountPerItem * quantity);
                     finalPrice = Math.max(originalPrice- discountAmount , 0);
                     hasDiscount = true;
                 }
