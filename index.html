@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">🛒 BENAKRAB SHOPP - 👑 أحدث موديلات الأطفال</title>
-    <meta property="og:title" id="ogTitle" content="🛒 BENAKRAB SHOPP - 👑 أحدث موديلات الأطفال">
+    <title id="pageTitle"></title>
+    <meta property="og:title" id="ogTitle" content="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1996,7 +1996,7 @@
                 <div class="logo">
                     <img src="" alt="شعار المتجر" class="store-logo-small" id="storeLogoHeader" style="display: none;">
                     <span id="storeIcon" style="display: inline;">👑</span>
-                    <span id="storeNameHeader">BENAKRAB SHOPP</span>
+                    <span id="storeNameHeader"></span>
                 </div>
                 
                 <!-- مساحة فارغة بدلاً من القائمة -->
@@ -2015,7 +2015,7 @@
                     <!-- storeTitle تحت الشعار مباشرة -->
                     <h2 class="section-title" id="storeTitleHeader" style="margin-top: 1rem;">
                         <i class="fas fa-star"></i> 
-                        <span id="storeTitleText">👑 أحدث موديلات الأطفال</span>
+                        <span id="storeTitleText"></span>
                     </h2>
                 </div>
                 
@@ -3955,7 +3955,7 @@ const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, ite
             }
         }
 
-        function updateStoreInterface() {
+       /*  function updateStoreInterface() {
             // تحديث عنوان المتجر
             if (STORE_CONFIG.STORE_INFO && STORE_CONFIG.STORE_INFO.name) {
                 document.getElementById('storeNameHeader').textContent = STORE_CONFIG.STORE_INFO.name;
@@ -3975,7 +3975,35 @@ const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, ite
             
             // تحديث روابط وسائل التواصل الاجتماعي - تمت الإضافة
             updateSocialMediaLinks();
-        }
+        } */ 
+
+        function updateStoreInterface() {
+    // تحديث عنوان المتجر و tagline
+    if (STORE_CONFIG.STORE_INFO && STORE_CONFIG.STORE_INFO.name) {
+        const storeName = STORE_CONFIG.STORE_INFO.name;
+        const storeTagline = STORE_CONFIG.STORE_INFO.tagline || '👑 أحدث موديلات الأطفال';
+        
+        // تحديث العناوين
+        document.getElementById('storeNameHeader').textContent = storeName;
+        document.getElementById('storeTitleText').textContent = storeTagline;
+        document.getElementById('storeNameFooter').textContent = storeName;
+        
+        // تحديث title و meta tags
+        document.title = `🛒 ${storeName} - ${storeTagline}`;
+        document.getElementById('ogTitle').content = `🛒 ${storeName} - ${storeTagline}`;
+    }
+    
+    // تحديث عنوان المتجر في التذييل
+    if (STORE_CONFIG.STORE_INFO && STORE_CONFIG.STORE_INFO.address) {
+        document.getElementById('storeAddressFooter').textContent = STORE_CONFIG.STORE_INFO.address;
+    }
+    
+    // تحميل الشعار
+    loadStoreLogo();
+    
+    // تحديث روابط وسائل التواصل الاجتماعي
+    updateSocialMediaLinks();
+}
 
         function setupRealTimeUpdates() {
             // يمكن إضافة نظام التحديثات الفورية هنا
@@ -4281,7 +4309,7 @@ const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, ite
                 <div class="logo" style="color: white;">
                     <img src="" alt="شعار المتجر" class="store-logo-small" id="storeLogoFooter" style="display: none;">
                     <span id="storeIconFooter">👑</span>
-                    <span id="storeNameFooter">BENAKRAB SHOPP</span>
+                    <span id="storeNameFooter"></span>
                 </div>
                 <p style="margin: 0; opacity: 0.8; font-size: 0.9rem;">
                     <span id="storeAddressFooter"></span>  جودة عالية | أسعار مناسبة
