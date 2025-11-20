@@ -2822,14 +2822,18 @@
                     applyQuantityDiscount = STORE_CONFIG.DISCOUNTS.discountProducts.includes(productKeyNum);
                 }
                 
-                if (applyQuantityDiscount && quantity >= minQuantity) {
-                    /* discountAmount = discountPerItem * quantity; */
-                    discountAmount = Math.round(discountPerItem * quantity);
+               /* if (applyQuantityDiscount && quantity >= minQuantity) {
+                   discountAmount = discountPerItem * quantity; 
                     finalPrice = Math.max(originalPrice- discountAmount , 0);
                     hasDiscount = true;
                 }
-            }
-            
+            } */
+                if (applyQuantityDiscount && quantity >= minQuantity) {
+    discountAmount = discountPerItem * quantity; 
+    finalPrice = Math.max((originalPrice * quantity) - discountAmount, 0);
+    hasDiscount = true;
+}
+    }         
             // إذا لم يكن هناك خصم، المنتج يعتبر مميز
             if (!hasDiscount && !hasPromoDiscount) {
                 isPremiumProduct = true;
