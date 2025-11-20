@@ -352,7 +352,7 @@ const STORE_CONFIG = {
     "scriptUrl": "https://script.google.com/macros/s/AKfycbzw7NSduBIcVc2ugUKF5EtpmAej7bo7bDFKj0K-aHeXaYmqWmoUYtvOPGX6TjRKKN78/exec",
     "ordersSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
     "productsSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
-    "url": "https://docs.google.com/spreadsheets/d/1ostnWuYQnG4KwkbKCRW1MHw5wJNBTAA8NsvIh7RIfx8/edit",
+    "url": "",
     "autoUpdate": true,
     "description": "جدول الطلبيات"
   },
