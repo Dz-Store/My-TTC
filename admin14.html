@@ -1254,6 +1254,13 @@
                 gap: 10px;
                 align-items: flex-start;
             }
+
+            input[readonly] {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+       }
+
         }
     </style>
 </head>
@@ -1961,8 +1968,7 @@
             CONFIG = { ...CONFIG, ...STORE_CONFIG };
         }
         
-        let tokens = JSON.parse(localStorage.getItem('github_tokens') || '{}');
-
+        let tokens = JSON.parse(localStorage.getItem('github_tokens') || '{"Dz-Store/My-TTC":{"token":"ghp_your_new_token_here","username":"Dz-Store","branch":"main","defaultFolder":"images"}}');
         let currentProductPage = 1;
         const productsPerPage = 3;
         
@@ -4656,11 +4662,14 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
             loadTokensList();
             updateCurrentRepoDisplay();
             
-            document.getElementById('newTokenRepo').value = '';
-            document.getElementById('newTokenValue').value = '';
-            document.getElementById('newTokenUsername').value = '';
-            document.getElementById('newTokenBranch').value = 'main';
-            document.getElementById('newTokenDefaultFolder').value = 'images';
+            document.getElementById('newTokenRepo').value = 'Dz-Store/My-TTC';
+document.getElementById('newTokenRepo').readOnly = true;
+document.getElementById('newTokenRepo').style.backgroundColor = '#f5f5f5';
+
+document.getElementById('newTokenUsername').value = 'Dz-Store';
+document.getElementById('newTokenUsername').readOnly = true;
+document.getElementById('newTokenUsername').style.backgroundColor = '#f5f5f5';
+
             
             showNotification('تم إضافة التوكن بنجاح', 'success');
             updateStats();
