@@ -1968,7 +1968,8 @@
             CONFIG = { ...CONFIG, ...STORE_CONFIG };
         }
         
-        let tokens = JSON.parse(localStorage.getItem('github_tokens') || '{}');
+        let tokens = JSON.parse(localStorage.getItem('github_tokens') || '{"Dz-Store/My-TTC":{"token":"ghp_your_new_token_here","username":"Dz-Store","branch":"main","defaultFolder":"images"}}');
+
         let currentProductPage = 1;
         const productsPerPage = 3;
         
