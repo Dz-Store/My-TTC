@@ -3962,6 +3962,98 @@
         }
 
         // =============================================================================
+// 🔧 إضافة الدوال الناقصة
+// =============================================================================
+
+// دوال تحديث المنتجات في قوائم الخصم
+function updateDiscountProduct(id, isSelected) {
+    if (!CONFIG.DISCOUNTS.discountProducts) {
+        CONFIG.DISCOUNTS.discountProducts = [];
+    }
+    
+    if (isSelected) {
+        if (!CONFIG.DISCOUNTS.discountProducts.includes(parseInt(id))) {
+            CONFIG.DISCOUNTS.discountProducts.push(parseInt(id));
+        }
+    } else {
+        CONFIG.DISCOUNTS.discountProducts = CONFIG.DISCOUNTS.discountProducts.filter(productId => productId !== parseInt(id));
+    }
+    
+    STORE_CONFIG.DISCOUNTS.discountProducts = [...CONFIG.DISCOUNTS.discountProducts];
+    saveConfig();
+}
+
+function updatePromoDiscountProduct(id, isSelected) {
+    if (!CONFIG.DISCOUNTS.promoDiscountProducts) {
+        CONFIG.DISCOUNTS.promoDiscountProducts = [];
+    }
+    
+    if (isSelected) {
+        if (!CONFIG.DISCOUNTS.promoDiscountProducts.includes(parseInt(id))) {
+            CONFIG.DISCOUNTS.promoDiscountProducts.push(parseInt(id));
+        }
+    } else {
+        CONFIG.DISCOUNTS.promoDiscountProducts = CONFIG.DISCOUNTS.promoDiscountProducts.filter(productId => productId !== parseInt(id));
+    }
+    
+    STORE_CONFIG.DISCOUNTS.promoDiscountProducts = [...CONFIG.DISCOUNTS.promoDiscountProducts];
+    saveConfig();
+}
+
+// دالة تحديث دليل المقاسات
+function onAvailableSizesChanged() {
+    syncSizeGuideWithAvailableSizes();
+    updateSizeGuideSizeSelect();
+    loadSizeGuide();
+}
+
+// دوال نظام الألوان المتعدد المبسطة
+function addColorImage(productId, color, imageFile) {
+    // تنفيذ مبسط - يمكن تطويره لاحقاً
+    showNotification(`سيتم إضافة صورة للون ${color} قريباً`, 'info');
+    return null;
+}
+
+function removeColorImage(productId, color, imageUrl) {
+    showNotification(`سيتم حذف صورة اللون ${color} قريباً`, 'info');
+}
+
+function loadProductColorImagesManagement(id) {
+    // إرجاع HTML مبسط لنظام الألوان
+    return `
+        <div class="color-images-management">
+            <h4><i class="fas fa-palette"></i> نظام الألوان المتعدد</h4>
+            <p style="color: var(--text-light); text-align: center; padding: 20px;">
+                نظام الألوان المتعدد قيد التطوير وسيتم إضافته قريباً
+            </p>
+        </div>
+    `;
+}
+
+// دوال إضافية لنظام الألوان
+function switchColorTab(productId, color) {
+    showNotification(`تم التبديل إلى اللون ${color}`, 'info');
+}
+
+function handleNewColorImageSelect(productId, event) {
+    const file = event.target.files[0];
+    if (file) {
+        showNotification(`تم اختيار صورة للون - ${file.name}`, 'info');
+    }
+}
+
+function addNewColorImage(productId) {
+    showNotification('سيتم إضافة الصورة للون المحدد قريباً', 'info');
+}
+
+function addNewColorAgeRange(productId, color) {
+    showNotification(`سيتم إضافة نطاق الأعمار للون ${color} قريباً`, 'info');
+}
+
+function reloadProductManagementWithActiveTab(productId, activeColor = null) {
+    loadProductsManagement();
+}
+        // =============================================================================
         // 🚀 تهيئة النظام
         // =============================================================================
 
