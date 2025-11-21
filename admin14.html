@@ -4450,10 +4450,27 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
         }
 
         function removeProduct(id) {
-            if (Object.keys(CONFIG.PRODUCTS).length > 1) {
-                showConfirmModal(
-                    'هل أنت متأكد من حذف هذا المنتج؟',
-                    () => {
+    if (Object.keys(CONFIG.PRODUCTS).length > 1) {
+        showConfirmModal(
+            'هل أنت متأكد من حذف هذا المنتج؟',
+            async () => {
+                // حذف الصورة الرئيسية من GitHub
+                const productImage = CONFIG.PRODUCTS[id].image;
+                if (productImage && productImage.includes('github.com')) {
+                    await deleteImageFromGitHub(productImage);
+                }
+
+                // حذف صور الألوان من GitHub
+                if (CONFIG.PRODUCTS[id].colorImages) {
+                    for (const color in CONFIG.PRODUCTS[id].colorImages) {
+                        const colorImages = CONFIG.PRODUCTS[id].colorImages[color].images;
+                        for (const imageUrl of colorImages) {
+                            if (imageUrl.includes('github.com')) {
+                                await deleteImageFromGitHub(imageUrl);
+                            }
+                        }
+                    }
+                }
                         delete CONFIG.PRODUCTS[id];
                         delete STORE_CONFIG.PRODUCTS[id];
                         
