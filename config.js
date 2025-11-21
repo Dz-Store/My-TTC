@@ -1,59 +1,33 @@
 const STORE_CONFIG = {
   "PRODUCTS": {
-    "4": {
-      "name": "Nike Baggy Jogger",
-      "price": 5000,
-      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-1763768478065-1000056031.jpg",
-      "description": " Nike Baggy Jogger  نوعية رفيعة بلونين مختلفين",
+    "5": {
+      "name": "ddssd",
+      "price": 2222,
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-1763768599848-1000056027.jpg",
+      "description": "",
       "availableSizes": [
-        "S",
-        "M",
-        "L"
+        "S"
       ],
       "availableColors": [
-        "أسود",
-        "رمادي",
-        "أخضر"
+        "أسود"
       ],
-      "ageRanges": [],
+      "ageRanges": [
+        {
+          "ageFrom": "A",
+          "ageTo": "A",
+          "size": "XXXL"
+        }
+      ],
       "colorImages": {
         "أسود": {
           "images": [
-            "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-أسود-1763314062749-modal1.jpeg"
-          ],
-          "ageRanges": []
-        },
-        "رمادي": {
-          "images": [
-            "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-رمادي-1763314176653-modal2.jpeg"
+            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-أسود-1763769160552-1000056028.jpg"
           ],
           "ageRanges": [
             {
-              "ageFrom": "A",
-              "ageTo": "A",
+              "ageFrom": "6",
+              "ageTo": "10",
               "size": "S"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "M"
-            }
-          ]
-        },
-        "أخضر": {
-          "images": [
-            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-أخضر-1763577384417-1000056031.jpg"
-          ],
-          "ageRanges": [
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "S"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "M"
             }
           ]
         }
@@ -298,10 +272,10 @@ const STORE_CONFIG = {
     "minQuantityForDiscount": 1,
     "discountPerItem": 400,
     "discountScope": "selected",
-    "discountProducts": [
-      4
+    "discountProducts": [],
+    "promoDiscountProducts": [
+      5
     ],
-    "promoDiscountProducts": [],
     "enableQuantityDiscount": true,
     "enablePromotionalDiscount": false,
     "promotionalDiscountPercent": 20,
