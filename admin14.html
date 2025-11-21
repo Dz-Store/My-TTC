@@ -1777,45 +1777,53 @@
 
         <!-- قسم إدارة التوكنات -->
         <div id="tokens" class="tab-content">
-            <div class="section">
-                <h3><i class="fas fa-key"></i> إدارة توكنات المستودعات</h3>
-                <p style="color: var(--text-light); margin-bottom: 20px;">
-                    هنا يمكنك إدارة التوكنات الفريدة لكل مستودع. كل توكن يسمح بالوصول إلى مستودع محدد على GitHub.
-                </p>
-                
-                <div class="token-management">
-                    <h4 style="color: var(--primary-color); margin-bottom: 15px;">
-                        <i class="fas fa-plus-circle"></i> إضافة توكن جديد
-                    </h4>
-                    <div class="form-group">
-                        <label>اسم المستودع:</label>
-                        <input type="text" id="newTokenRepo" placeholder="اسم المستودع على GitHub">
+    <div class="section">
+        <h3><i class="fas fa-key"></i> إدارة التوكن</h3>
+        <p style="color: var(--text-light); margin-bottom: 20px;">
+            إدارة التوكن الخاص بالمستودع المبرمج في النظام.
+        </p>
+        
+        <div class="token-management">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                <i class="fas fa-plus-circle"></i> إضافة توكن جديد
+            </h4>
+            
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 2px solid var(--primary-color);">
+                <h5 style="color: var(--primary-color); margin-bottom: 10px;">
+                    <i class="fas fa-info-circle"></i> الإعدادات المبرمجة
+                </h5>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <strong>اسم المستخدم:</strong>
+                        <div style="background: white; padding: 8px; border-radius: 5px; margin-top: 5px;">
+                            Dz-Store
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>التوكن:</label>
-                        <input type="password" id="newTokenValue" placeholder="توكن GitHub الشخصي">
+                    <div>
+                        <strong>المستودع:</strong>
+                        <div style="background: white; padding: 8px; border-radius: 5px; margin-top: 5px;">
+                            My-TTC
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>اسم المستخدم:</label>
-                        <input type="text" id="newTokenUsername" placeholder="اسم المستخدم على GitHub">
-                    </div>
-                    <div class="form-group">
-                        <label>الفرع:</label>
-                        <input type="text" id="newTokenBranch" placeholder="main" value="main">
-                    </div>
-                    <div class="form-group">
-                        <label>المجلد الافتراضي للصور:</label>
-                        <input type="text" id="newTokenDefaultFolder" placeholder="images" value="images">
-                        <small style="color: var(--text-light);">المجلد الافتراضي لرفع الصور في هذا المستودع</small>
-                    </div>
-                    <button class="btn btn-primary" onclick="addNewToken()">
-                        <i class="fas fa-plus"></i> إضافة التوكن
-                    </button>
                 </div>
-                
-                <div class="token-list" id="tokensList"></div>
             </div>
+            
+            <div class="form-group">
+                <label>توكن GitHub الشخصي:</label>
+                <input type="password" id="newTokenValue" placeholder="أدخل التوكن الشخصي من GitHub">
+                <small style="color: var(--text-light);">
+                    سيتم ربط التوكن تلقائياً بالمستودع: <strong>My-TTC</strong>
+                </small>
+            </div>
+            
+            <button class="btn btn-primary" onclick="addNewToken()">
+                <i class="fas fa-plus"></i> إضافة التوكن
+            </button>
         </div>
+        
+        <div class="token-list" id="tokensList"></div>
+    </div>
+</div>
 
         <!-- قسم الأمان -->
         <div id="security" class="tab-content">
@@ -4669,12 +4677,8 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
         }
 
         function editToken(repo) {
-    const tokenKeys = Object.keys(tokens);
-    // منع تعديل التوكن الأول (أول توكن تم إضافته)
-    if (tokenKeys.length > 0 && tokenKeys[0] === repo) {
-        showNotification('التوكن الأساسي غير قابل للتعديل', 'error');
-        return;
-    }
+    showNotification('لا يمكن تعديل التوكن - الإعدادات مبرمجة في النظام', 'error');
+}
     
     const token = tokens[repo];
     
@@ -4846,44 +4850,40 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
 
     // دالة محسنة لإضافة توكن جديد مع تحديث الواجهة
     function addNewToken() {
-        const repo = document.getElementById('newTokenRepo').value.trim();
-        const token = document.getElementById('newTokenValue').value.trim();
-        const username = document.getElementById('newTokenUsername').value.trim();
-        const branch = document.getElementById('newTokenBranch').value.trim() || 'main';
-        const defaultFolder = document.getElementById('newTokenDefaultFolder').value.trim() || 'images';
-        
-        if (!repo || !token || !username) {
-            showNotification('يرجى ملء جميع الحقول', 'error');
-            return;
-        }
-        
-        tokens[repo] = {
-            token: token,
-            username: username,
-            branch: branch,
-            defaultFolder: defaultFolder
-        };
-        
-        localStorage.setItem('github_tokens', JSON.stringify(tokens));
-        
-        if (Object.keys(tokens).length === 1) {
-            setDefaultRepo(repo);
-        }
-        
-        loadTokensList();
-        updateCurrentRepoDisplay();
-        updateAddTokenButtonVisibility(); // تحديث حالة زر الإضافة
-        
-        document.getElementById('newTokenRepo').value = '';
-        document.getElementById('newTokenValue').value = '';
-        document.getElementById('newTokenUsername').value = '';
-        document.getElementById('newTokenBranch').value = 'main';
-        document.getElementById('newTokenDefaultFolder').value = 'images';
-        
-        showNotification('تم إضافة التوكن بنجاح', 'success');
-        updateStats();
+    const token = document.getElementById('newTokenValue').value.trim();
+    
+    if (!token) {
+        showNotification('يرجى إدخال التوكن', 'error');
+        return;
     }
 
+    // استخدام الإعدادات المبرمجة في الكود
+    const repo = GITHUB_CONFIG.repo;
+    const username = GITHUB_CONFIG.username;
+    
+    tokens[repo] = {
+        token: token,
+        username: username,
+        branch: 'main',
+        defaultFolder: 'images'
+    };
+    
+    localStorage.setItem('github_tokens', JSON.stringify(tokens));
+    
+    if (Object.keys(tokens).length === 1) {
+        setDefaultRepo(repo);
+    }
+    
+    loadTokensList();
+    updateCurrentRepoDisplay();
+    updateAddTokenButtonVisibility();
+    
+    // مسح حقل التوكن فقط
+    document.getElementById('newTokenValue').value = '';
+    
+    showNotification(`تم إضافة التوكن بنجاح للمستودع: ${repo}`, 'success');
+    updateStats();
+}
     // دالة محسنة لحذف التوكن مع تحديث الواجهة
     function deleteToken(repo) {
         const tokenKeys = Object.keys(tokens);
