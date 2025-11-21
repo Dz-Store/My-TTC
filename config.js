@@ -40,6 +40,12 @@ const STORE_CONFIG = {
               "size": "M"
             }
           ]
+        },
+        "أزرق": {
+          "images": [
+            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-أزرق-1763733843690-IMG_20251013_093901_(360_x_640_pixel).jpg"
+          ],
+          "ageRanges": []
         }
       }
     }
