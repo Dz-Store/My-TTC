@@ -3880,17 +3880,27 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
 
         // تحديث عرض المستودع الحالي
         function updateCurrentRepoDisplay() {
-            const displayElement = document.getElementById('currentRepoDisplay');
-            const repoNameElement = document.getElementById('currentRepoName');
-            
-            if (defaultRepo && tokens[defaultRepo]) {
-                repoNameElement.textContent = defaultRepo;
-                displayElement.style.display = 'flex';
-            } else {
-                repoNameElement.textContent = 'لم يتم اختيار مستودع';
-                displayElement.style.display = 'flex';
-            }
-        }
+    const displayElement = document.getElementById('currentRepoDisplay');
+    const repoNameElement = document.getElementById('currentRepoName');
+    
+    const currentRepo = getDefaultRepo();
+    
+    if (currentRepo && tokens[currentRepo]) {
+        repoNameElement.textContent = currentRepo;
+        displayElement.style.display = 'flex';
+        
+        // إخفاء زر إضافة التوكن وتبويب الإدارة
+        document.querySelector('.token-management').style.display = 'none';
+        document.querySelector('.tab[onclick="switchTab(\'tokens\')"]').style.display = 'none';
+    } else {
+        repoNameElement.textContent = 'لم يتم اختيار مستودع';
+        displayElement.style.display = 'flex';
+        
+        // إظهار زر إضافة التوكن وتبويب الإدارة
+        document.querySelector('.token-management').style.display = 'block';
+        document.querySelector('.tab[onclick="switchTab(\'tokens\')"]').style.display = 'flex';
+    }
+}
 
         // الحصول على المستودع الافتراضي
         function getDefaultRepo() {
