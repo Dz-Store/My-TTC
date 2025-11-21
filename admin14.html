@@ -4574,40 +4574,57 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
 
         // إدارة التوكنات
         function loadTokensList() {
-            const container = document.getElementById('tokensList');
-            container.innerHTML = '';
-            
-            if (Object.keys(tokens).length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-light);">لا توجد توكنات مضافة بعد</p>';
-                return;
-            }
-            
-            Object.keys(tokens).forEach(repo => {
-                const token = tokens[repo];
-                const isDefault = repo === defaultRepo;
-                container.innerHTML += `
-                    <div class="token-item">
-                        <div>
-                            <strong>${repo} ${isDefault ? '⭐' : ''}</strong><br>
-                            <small style="color: var(--text-light);">المستخدم: ${token.username} | الفرع: ${token.branch} | المجلد: ${token.defaultFolder || 'images'}</small>
-                        </div>
-                        <div class="token-actions">
-                            ${!isDefault ? `
-                                <button class="btn btn-success small-btn" onclick="setDefaultRepo('${repo}')">
-                                    <i class="fas fa-star"></i> افتراضي
-                                </button>
-                            ` : ''}
-                            <button class="btn btn-warning small-btn" onclick="editToken('${repo}')">
-                                <i class="fas fa-edit"></i> تعديل
-                            </button>
-                            <button class="btn btn-danger small-btn" onclick="deleteToken('${repo}')">
-                                <i class="fas fa-trash"></i> حذف
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
+    const container = document.getElementById('tokensList');
+    container.innerHTML = '';
+    
+    const tokenKeys = Object.keys(tokens);
+    
+    if (tokenKeys.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-light);">لا توجد توكنات مضافة بعد</p>';
+        return;
+    }
+    
+    // عرض جميع التوكنات ماعدا الأول (index 0)
+    const tokensToShow = tokenKeys.slice(1);
+    
+    if (tokensToShow.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; color: var(--text-light); padding: 20px;">
+                <i class="fas fa-lock" style="font-size: 24px; margin-bottom: 10px;"></i><br>
+                التوكن الأساسي مفعل ومحمي<br>
+                <small>يمكنك إضافة توكنات إضافية فقط</small>
+            </div>
+        `;
+        return;
+    }
+    
+    tokensToShow.forEach(repo => {
+        const token = tokens[repo];
+        const isDefault = repo === defaultRepo;
+        
+        container.innerHTML += `
+            <div class="token-item">
+                <div>
+                    <strong>${repo} ${isDefault ? '⭐' : ''}</strong><br>
+                    <small style="color: var(--text-light);">المستخدم: ${token.username} | الفرع: ${token.branch} | المجلد: ${token.defaultFolder || 'images'}</small>
+                </div>
+                <div class="token-actions">
+                    ${!isDefault ? `
+                        <button class="btn btn-success small-btn" onclick="setDefaultRepo('${repo}')">
+                            <i class="fas fa-star"></i> افتراضي
+                        </button>
+                    ` : ''}
+                    <button class="btn btn-warning small-btn" onclick="editToken('${repo}')">
+                        <i class="fas fa-edit"></i> تعديل
+                    </button>
+                    <button class="btn btn-danger small-btn" onclick="deleteToken('${repo}')">
+                        <i class="fas fa-trash"></i> حذف
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+}
 
         function addNewToken() {
             const repo = document.getElementById('newTokenRepo').value.trim();
@@ -4648,39 +4665,52 @@ function reloadProductManagementWithActiveTab(productId, activeColor = null) {
         }
 
         function editToken(repo) {
-            const token = tokens[repo];
-            
-            document.getElementById('newTokenRepo').value = repo;
-            document.getElementById('newTokenValue').value = token.token;
-            document.getElementById('newTokenUsername').value = token.username;
-            document.getElementById('newTokenBranch').value = token.branch;
-            document.getElementById('newTokenDefaultFolder').value = token.defaultFolder || 'images';
-            
-            delete tokens[repo];
-            
-            showNotification('يمكنك الآن تعديل التوكن', 'warning');
-        }
+    const tokenKeys = Object.keys(tokens);
+    // منع تعديل التوكن الأول (أول توكن تم إضافته)
+    if (tokenKeys.length > 0 && tokenKeys[0] === repo) {
+        showNotification('التوكن الأساسي غير قابل للتعديل', 'error');
+        return;
+    }
+    
+    const token = tokens[repo];
+    
+    document.getElementById('newTokenRepo').value = repo;
+    document.getElementById('newTokenValue').value = token.token;
+    document.getElementById('newTokenUsername').value = token.username;
+    document.getElementById('newTokenBranch').value = token.branch;
+    document.getElementById('newTokenDefaultFolder').value = token.defaultFolder || 'images';
+    
+    delete tokens[repo];
+    
+    showNotification('يمكنك الآن تعديل التوكن', 'warning');
+}
 
         function deleteToken(repo) {
-            showConfirmModal(
-                `هل أنت متأكد من حذف توكن ${repo}؟`,
-                () => {
-                    delete tokens[repo];
-                    localStorage.setItem('github_tokens', JSON.stringify(tokens));
-                    
-                    if (repo === defaultRepo) {
-                        defaultRepo = '';
-                        localStorage.removeItem('default_repo');
-                    }
-                    
-                    loadTokensList();
-                    updateCurrentRepoDisplay();
-                    showNotification('تم حذف التوكن', 'success');
-                    updateStats();
-                }
-            );
+    const tokenKeys = Object.keys(tokens);
+    // منع حذف التوكن الأول (أول توكن تم إضافته)
+    if (tokenKeys.length > 0 && tokenKeys[0] === repo) {
+        showNotification('التوكن الأساسي غير قابل للحذف', 'error');
+        return;
+    }
+    
+    showConfirmModal(
+        `هل أنت متأكد من حذف توكن ${repo}؟`,
+        () => {
+            delete tokens[repo];
+            localStorage.setItem('github_tokens', JSON.stringify(tokens));
+            
+            if (repo === defaultRepo) {
+                defaultRepo = '';
+                localStorage.removeItem('default_repo');
+            }
+            
+            loadTokensList();
+            updateCurrentRepoDisplay();
+            showNotification('تم حذف التوكن', 'success');
+            updateStats();
         }
-
+    );
+}
         // وظائف النظام
         function exportSettings() {
             const dataStr = JSON.stringify(CONFIG, null, 2);
