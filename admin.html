@@ -4780,4 +4780,352 @@
                         <div class="discount-control">
                             <input type="checkbox" id="productPromoDiscount_${id}" 
                                    ${hasPromoDiscount ? 'checked' : ''}
-                                   onchange="updatePromo
+                                   onchange="updatePromoDiscountProduct(${id}, this.checked)">
+                            <label for="productPromoDiscount_${id}">تطبيق الخصم الترويجي على هذا المنتج</label>
+                        </div>
+                        
+                        <div class="size-color-config">
+                            <div class="size-color-item">
+                                <label>القياسات المتاحة:</label>
+                                <div class="checkbox-group">
+                                    ${CONFIG.AVAILABLE_SIZES.map(size => `
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="size_${id}_${size}" 
+                                                   ${product.availableSizes && product.availableSizes.includes(size) ? 'checked' : ''}
+                                                   onchange="updateProductSizes(${id}, '${size}', this.checked)">
+                                            <label for="size_${id}_${size}">${size}</label>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <div class="size-color-item">
+                                <label>الألوان المتاحة:</label>
+                                <div class="checkbox-group">
+                                    ${CONFIG.AVAILABLE_COLORS.map(color => `
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="color_${id}_${color}" 
+                                                   ${product.availableColors && product.availableColors.includes(color) ? 'checked' : ''}
+                                                   onchange="updateProductColors(${id}, '${color}', this.checked)">
+                                            <label for="color_${id}_${color}">${color}</label>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- نظام إدارة الألوان المتعددة مع جداول الأعمار والقياسات -->
+                        ${loadProductColorImagesManagement(id)}
+                        
+                        <!-- جدول الأعمار والقياسات العام للمنتج -->
+                        ${loadProductAgeRanges(id)}
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn btn-danger small-btn" onclick="removeProduct(${id})">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                            <button class="btn btn-success small-btn" onclick="saveConfig(); showNotification('تم حفظ المنتج محلياً', 'success');">
+                                <i class="fas fa-save"></i> حفظ محلياً
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function updatePagination(totalPages) {
+            const paginationTop = document.getElementById('productsPagination');
+            const paginationBottom = document.getElementById('productsPaginationBottom');
+            
+            let paginationHTML = '';
+            
+            if (currentProductPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="changeProductPage(${currentProductPage - 1})"><i class="fas fa-chevron-right"></i> السابق</button>`;
+            }
+            
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentProductPage ? 'active' : ''}" onclick="changeProductPage(${i})">${i}</button>`;
+            }
+            
+            if (currentProductPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="changeProductPage(${currentProductPage + 1})">التالي <i class="fas fa-chevron-left"></i></button>`;
+            }
+            
+            paginationTop.innerHTML = paginationHTML;
+            paginationBottom.innerHTML = paginationHTML;
+        }
+
+        function changeProductPage(page) {
+            currentProductPage = page;
+            loadProductsManagement();
+        }
+
+        function updateProductField(id, field, value) {
+            CONFIG.PRODUCTS[id][field] = field === 'price' ? parseInt(value) : value;
+            STORE_CONFIG.PRODUCTS[id][field] = CONFIG.PRODUCTS[id][field];
+            
+            if (saveConfig()) {
+                window.dispatchEvent(new CustomEvent('configUpdated', { detail: STORE_CONFIG }));
+                showNotification('تم تحديث المنتج', 'success');
+            }
+        }
+
+        function removeProduct(id) {
+            if (Object.keys(CONFIG.PRODUCTS).length > 1) {
+                showConfirmModal(
+                    'هل أنت متأكد من حذف هذا المنتج؟',
+                    () => {
+                        delete CONFIG.PRODUCTS[id];
+                        delete STORE_CONFIG.PRODUCTS[id];
+                        
+                        // إزالة المنتج من قائمة الخصم إذا كان موجوداً
+                        if (CONFIG.DISCOUNTS.discountProducts) {
+                            CONFIG.DISCOUNTS.discountProducts = CONFIG.DISCOUNTS.discountProducts.filter(productId => productId !== parseInt(id));
+                            STORE_CONFIG.DISCOUNTS.discountProducts = [...CONFIG.DISCOUNTS.discountProducts];
+                        }
+                        
+                        if (CONFIG.DISCOUNTS.promoDiscountProducts) {
+                            CONFIG.DISCOUNTS.promoDiscountProducts = CONFIG.DISCOUNTS.promoDiscountProducts.filter(productId => productId !== parseInt(id));
+                            STORE_CONFIG.DISCOUNTS.promoDiscountProducts = [...CONFIG.DISCOUNTS.promoDiscountProducts];
+                        }
+                        
+                        const totalPages = Math.ceil(Object.keys(CONFIG.PRODUCTS).length / productsPerPage);
+                        if (currentProductPage > totalPages) {
+                            currentProductPage = totalPages;
+                        }
+                        
+                        loadProductsManagement();
+                        saveConfig();
+                        showNotification('تم حذف المنتج', 'success');
+                    }
+                );
+            } else {
+                showNotification('لا يمكن حذف جميع المنتجات', 'error');
+            }
+        }
+
+        // إدارة التوصيل
+        function loadWilayasList() {
+            const select = document.getElementById('wilayaSelect');
+            select.innerHTML = '<option value="">-- اختر الولاية --</option>';
+            Object.keys(CONFIG.DELIVERY_PRICES).forEach(wilaya => {
+                select.innerHTML += `<option value="${wilaya}">${wilaya}</option>`;
+            });
+        }
+
+        function loadWilayaPrice() {
+            const wilaya = document.getElementById('wilayaSelect').value;
+            const form = document.getElementById('wilayaPriceForm');
+            
+            if (wilaya) {
+                const prices = CONFIG.DELIVERY_PRICES[wilaya];
+                document.getElementById('homePrice').value = prices.home;
+                document.getElementById('deskPrice').value = prices.desk;
+                form.classList.remove('hidden');
+            } else {
+                form.classList.add('hidden');
+            }
+        }
+
+        function saveWilayaPrice() {
+            const wilaya = document.getElementById('wilayaSelect').value;
+            CONFIG.DELIVERY_PRICES[wilaya].home = parseInt(document.getElementById('homePrice').value);
+            CONFIG.DELIVERY_PRICES[wilaya].desk = parseInt(document.getElementById('deskPrice').value);
+            STORE_CONFIG.DELIVERY_PRICES[wilaya] = { ...CONFIG.DELIVERY_PRICES[wilaya] };
+            
+            saveConfig();
+            loadWilayasGrid();
+            showNotification('تم حفظ سعر التوصيل لـ ' + wilaya, 'success');
+        }
+
+        // معلومات المتجر
+        function loadStoreInfo() {
+            document.getElementById('storeName').value = CONFIG.STORE_INFO.name;
+            document.getElementById('storeIcon').value = CONFIG.STORE_INFO.storeIcon || '👑';
+            document.getElementById('storeTitle').value = CONFIG.STORE_INFO.storeTitle || '👑 أحدث موديلات الأطفال';
+            document.getElementById('storeTagline').value = CONFIG.STORE_INFO.tagline;
+            document.getElementById('storePhones').value = CONFIG.STORE_INFO.phoneNumbers.join(', ');
+            document.getElementById('whatsappNumber').value = CONFIG.STORE_INFO.whatsappNumber || '';
+        }
+
+        function saveStoreInfo() {
+            CONFIG.STORE_INFO.name = document.getElementById('storeName').value;
+            CONFIG.STORE_INFO.storeIcon = document.getElementById('storeIcon').value;
+            CONFIG.STORE_INFO.storeTitle = document.getElementById('storeTitle').value;
+            CONFIG.STORE_INFO.tagline = document.getElementById('storeTagline').value;
+            CONFIG.STORE_INFO.phoneNumbers = document.getElementById('storePhones').value.split(',').map(p => p.trim());
+            
+            // حفظ رقم الواتساب وتحديث الرابط تلقائياً إذا لم يتم تحديده
+            const whatsappNumber = document.getElementById('whatsappNumber').value;
+            CONFIG.STORE_INFO.whatsappNumber = whatsappNumber;
+            
+            // إذا كان رابط الواتساب فارغاً، قم بإنشائه تلقائياً
+            const whatsappUrlInput = document.getElementById('whatsappUrl').value;
+            if (!whatsappUrlInput && whatsappNumber) {
+                CONFIG.STORE_INFO.whatsappUrl = updateWhatsAppUrl(whatsappNumber);
+                // تحديث الحقل في الواجهة
+                document.getElementById('whatsappUrl').value = CONFIG.STORE_INFO.whatsappUrl;
+            } else {
+                CONFIG.STORE_INFO.whatsappUrl = whatsappUrlInput;
+            }
+            
+            STORE_CONFIG.STORE_INFO = { ...CONFIG.STORE_INFO };
+            
+            saveConfig();
+            showNotification('تم حفظ معلومات المتجر', 'success');
+        }
+
+        // دالة لتحديث رابط الواتساب تلقائياً
+        function updateWhatsAppUrl(number) {
+            if (number) {
+                // تنظيف الرقم من أي رموز غير مرغوبة
+                const cleanNumber = number.replace(/\D/g, '');
+                return `https://wa.me/${cleanNumber}`;
+            }
+            return "";
+        }
+
+        // القياسات المتاحة
+        function loadAvailableSizes() {
+            document.getElementById('availableSizes').value = CONFIG.AVAILABLE_SIZES.join(', ');
+        }
+
+        function saveAvailableSizes() {
+            const sizesInput = document.getElementById('availableSizes').value;
+            CONFIG.AVAILABLE_SIZES = sizesInput.split(',').map(size => size.trim()).filter(size => size);
+            STORE_CONFIG.AVAILABLE_SIZES = [...CONFIG.AVAILABLE_SIZES];
+            
+            saveConfig();
+            
+            // مزامنة دليل المقاسات مع المقاسات الجديدة
+            onAvailableSizesChanged();
+            
+            showNotification('تم حفظ القياسات المتاحة', 'success');
+            loadProductsManagement();
+        }
+
+        // الألوان المتاحة
+        function loadAvailableColors() {
+            document.getElementById('availableColors').value = CONFIG.AVAILABLE_COLORS.join(', ');
+        }
+
+        function saveAvailableColors() {
+            const colorsInput = document.getElementById('availableColors').value;
+            CONFIG.AVAILABLE_COLORS = colorsInput.split(',').map(color => color.trim()).filter(color => color);
+            STORE_CONFIG.AVAILABLE_COLORS = [...CONFIG.AVAILABLE_COLORS];
+            
+            saveConfig();
+            showNotification('تم حفظ الألوان المتاحة', 'success');
+            loadProductsManagement();
+        }
+
+        // وظائف النظام
+        function exportSettings() {
+            const dataStr = JSON.stringify(CONFIG, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'store-config.json';
+            link.click();
+            showNotification('تم تصدير الإعدادات', 'success');
+        }
+
+        function importSettings(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedConfig = JSON.parse(e.target.result);
+                        CONFIG = importedConfig;
+                        STORE_CONFIG = { ...importedConfig };
+                        saveConfig();
+                        loadSettings();
+                        showNotification('تم استيراد الإعدادات بنجاح', 'success');
+                    } catch (error) {
+                        showNotification('خطأ في ملف الإعدادات', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            }
+            input.value = '';
+        }
+
+        function resetSettings() {
+            showConfirmModal(
+                '⚠️ هل أنت متأكد من إعادة تعيين جميع الإعدادات؟ سيتم فقدان جميع التغييرات.',
+                () => {
+                    localStorage.removeItem('storeConfig');
+                    CONFIG = STORE_CONFIG;
+                    saveConfig();
+                    loadSettings();
+                    showNotification('تم إعادة التعيين بنجاح', 'success');
+                }
+            );
+        }
+
+        function goToStore() {
+            window.location.href = 'index.html';
+        }
+
+        // نظام الإشعارات
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            const icon = notification.querySelector('i');
+            icon.className = 
+                type === 'success' ? 'fas fa-check-circle' :
+                type === 'error' ? 'fas fa-exclamation-circle' :
+                'fas fa-exclamation-triangle';
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // نظام تأكيد الحذف
+        function showConfirmModal(message, confirmCallback) {
+            const modal = document.getElementById('confirmModal');
+            const messageElement = document.getElementById('confirmMessage');
+            const confirmButton = document.getElementById('confirmDeleteButton');
+            
+            messageElement.textContent = message;
+            
+            // إزالة أي مستمعين سابقين
+            const newConfirmButton = confirmButton.cloneNode(true);
+            confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
+            
+            // إضافة مستمع جديد
+            document.getElementById('confirmDeleteButton').addEventListener('click', function() {
+                confirmCallback();
+                hideConfirmModal();
+            });
+            
+            modal.style.display = 'flex';
+        }
+
+        function hideConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+
+        // تحميل الإعدادات عند بدء التشغيل
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfig();
+            checkAuthentication();
+            
+            window.addEventListener('configUpdated', function(event) {
+                console.log('🔄 تم استقبال حدث تحديث الإعدادات');
+                CONFIG = event.detail;
+                loadSettings();
+            });
+        });
+    </script>
+</body>
+</html>
+
