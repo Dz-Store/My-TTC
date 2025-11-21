@@ -2,18 +2,13 @@ const STORE_CONFIG = {
   "PRODUCTS": {
     "4": {
       "name": "Nike Baggy Jogger",
-      "price": 5000,
+      "price": 5800,
       "image": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/product-4-1763217318680-modal1.jpeg",
       "description": " Nike Baggy Jogger  نوعية رفيعة بلونين مختلفين",
-      "availableSizes": [
-        "S",
-        "M",
-        "L"
-      ],
+      "availableSizes": [],
       "availableColors": [
         "أسود",
-        "رمادي",
-        "أخضر"
+        "رمادي"
       ],
       "ageRanges": [],
       "colorImages": {
@@ -26,11 +21,6 @@ const STORE_CONFIG = {
               "ageFrom": "A",
               "ageTo": "A",
               "size": "S"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "M"
             }
           ]
         },
@@ -43,33 +33,6 @@ const STORE_CONFIG = {
               "ageFrom": "A",
               "ageTo": "A",
               "size": "S"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "M"
-            }
-          ]
-        },
-        "أخضر": {
-          "images": [
-            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-4-أخضر-1763577384417-1000056031.jpg"
-          ],
-          "ageRanges": [
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "S"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "M"
-            },
-            {
-              "ageFrom": "A",
-              "ageTo": "A",
-              "size": "42"
             }
           ]
         }
@@ -312,12 +275,12 @@ const STORE_CONFIG = {
   },
   "DISCOUNTS": {
     "minQuantityForDiscount": 1,
-    "discountPerItem": 400,
+    "discountPerItem": 800,
     "discountScope": "selected",
-    "discountProducts": [
+    "discountProducts": [],
+    "promoDiscountProducts": [
       4
     ],
-    "promoDiscountProducts": [],
     "enableQuantityDiscount": true,
     "enablePromotionalDiscount": false,
     "promotionalDiscountPercent": 20,
@@ -331,8 +294,8 @@ const STORE_CONFIG = {
   "STORE_INFO": {
     "name": "SANIX-DZ",
     "storeIcon": "👑",
-    "storeTitle": "الملابس الأعلى مبيعا",
-    "tagline": "الملابس الأكثر مبيعا",
+    "storeTitle": "Nike Baggy  Jogger",
+    "tagline": "متجر أفخم الملابس",
     "phoneNumbers": [
       "0671466489",
       "0551102155"
@@ -352,7 +315,7 @@ const STORE_CONFIG = {
     "scriptUrl": "https://script.google.com/macros/s/AKfycbzw7NSduBIcVc2ugUKF5EtpmAej7bo7bDFKj0K-aHeXaYmqWmoUYtvOPGX6TjRKKN78/exec",
     "ordersSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
     "productsSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
-    "url": "https://docs.google.com/spreadsheets/d/1ostnWuYQnG4KwkbKCRW1MHw5wJNBTAA8NsvIh7RIfx8/edit",
+    "url": "https://docs.google.com/spreadsheets/d/1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw/edit?usp=drivesdk",
     "autoUpdate": true,
     "description": "جدول الطلبيات"
   },
@@ -363,8 +326,7 @@ const STORE_CONFIG = {
     "أزرق",
     "أخضر",
     "وردي",
-    "رمادي",
-    "أصفر"
+    "رمادي"
   ],
   "AVAILABLE_SIZES": [
     "S",
@@ -388,10 +350,7 @@ const STORE_CONFIG = {
     "44",
     "45",
     "45",
-    "46",
-    "47",
-    "48",
-    "49"
+    "46"
   ],
   "SIZE_GUIDE": {
     "38": {
@@ -455,27 +414,6 @@ const STORE_CONFIG = {
       "heightTo": 176,
       "weightFrom": 74,
       "weightTo": 102,
-      "enabled": false
-    },
-    "47": {
-      "heightFrom": 168,
-      "heightTo": 178,
-      "weightFrom": 77,
-      "weightTo": 106,
-      "enabled": false
-    },
-    "48": {
-      "heightFrom": 170,
-      "heightTo": 180,
-      "weightFrom": 80,
-      "weightTo": 110,
-      "enabled": false
-    },
-    "49": {
-      "heightFrom": 172,
-      "heightTo": 182,
-      "weightFrom": 83,
-      "weightTo": 114,
       "enabled": false
     },
     "S": {
