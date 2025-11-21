@@ -5110,36 +5110,9 @@ function updateSingleTokenUI() {
         }
 
         // تحميل الإعدادات عند بدء التشغيل
-       document.addEventListener('DOMContentLoaded', function() {
-    checkAuthentication();
-    
-    // تفعيل نظام التوكن الفريد دائماً
-    initializeSingleTokenMode();
-    
-    loadTokensList();
-    updateCurrentRepoDisplay();
-    updateSingleTokenUI();
-    
-    // تحميل التوكنات من localStorage
-    const savedTokens = localStorage.getItem('github_tokens');
-    if (savedTokens) {
-        tokens = JSON.parse(savedTokens);
-    }
-    
-    // تحميل المستودع الافتراضي
-    const savedDefaultRepo = localStorage.getItem('default_repo');
-    if (savedDefaultRepo) {
-        defaultRepo = savedDefaultRepo;
-    }
-    
-    // تجاهل أي إعدادات سابقة لنظام التوكن الفريد وتفعيله دائماً
-    singleTokenMode = true;
-    localStorage.setItem('singleTokenMode', 'true');
-    
-    console.log('🚀 نظام إدارة المتجر جاهز للعمل!');
-    console.log('📊 التوكنات المحملة:', Object.keys(tokens).length);
-    console.log('🔧 نظام التوكن الفريد: مفعل دائماً');
-});
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfig();
+            checkAuthentication();
             
             window.addEventListener('configUpdated', function(event) {
                 console.log('🔄 تم استقبال حدث تحديث الإعدادات');
