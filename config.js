@@ -3,10 +3,12 @@ const STORE_CONFIG = {
     "5": {
       "name": "ddssd",
       "price": 2222,
-      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-1763768599848-1000056027.jpg",
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-1763830282318.jpg",
       "description": "",
       "availableSizes": [
-        "S"
+        "S",
+        "S1",
+        "S2"
       ],
       "availableColors": [
         "أسود"
@@ -21,15 +23,15 @@ const STORE_CONFIG = {
       "colorImages": {
         "أسود": {
           "images": [
-            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-أسود-1763769160552-1000056028.jpg"
+            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-أسود-1763830177600.jpg"
           ],
-          "ageRanges": [
-            {
-              "ageFrom": "6",
-              "ageTo": "10",
-              "size": "S"
-            }
-          ]
+          "ageRanges": []
+        },
+        "رمادي": {
+          "images": [
+            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-رمادي-1763831372225.jpg"
+          ],
+          "ageRanges": []
         }
       }
     }
