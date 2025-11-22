@@ -1976,6 +1976,42 @@
             background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
             opacity: 1;
         }
+
+        .model-image, .product-modal-image, .selected-product img {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .model-image.loading, .product-modal-image.loading {
+        opacity: 0.3;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+
+    /* تحسينات الأداء */
+    .model-image, .product-modal-image {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000;
+    }
+
+    /* تحسينات للشاشات الصغيرة */
+    @media (max-width: 768px) {
+        .model-image, .product-modal-image {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+        
     </style>
 </head>
 <body>
@@ -3312,91 +3348,97 @@
         // 🎨 معرض المنتجات
         // =============================================================================
 
-        function initModelsGallery() {
-            const grid = document.getElementById('modelsGrid');
-            if (!grid) {
-                console.log('⚠️ عنصر معرض المنتجات غير موجود');
-                return;
-            }
+         function initModelsGallery() {
+    const grid = document.getElementById('modelsGrid');
+    if (!grid) {
+        console.log('⚠️ عنصر معرض المنتجات غير موجود');
+        return;
+    }
+    
+    grid.innerHTML = '';
+    
+    if (!STORE_CONFIG.PRODUCTS || Object.keys(STORE_CONFIG.PRODUCTS).length === 0) {
+        grid.innerHTML = `
+            <div style="text-align: center; padding: 3rem; color: var(--gray);">
+                <i class="fas fa-box-open" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                <p>لا توجد منتجات متاحة حالياً</p>
+                <p style="font-size: 0.9rem;">سيتم تحميل المنتجات قريباً...</p>
+            </div>
+        `;
+        return;
+    }
+    
+    Object.keys(STORE_CONFIG.PRODUCTS).forEach((key, index) => {
+        const product = STORE_CONFIG.PRODUCTS[key];
+        const availableSizes = product.availableSizes || [];
+        const availableColors = product.availableColors || [];
+        
+        const sizesText = availableSizes.length > 0 
+            ? `المقاسات: ${availableSizes.join(', ')}` 
+            : 'لا توجد مقاسات محددة';
             
-            grid.innerHTML = '';
-            
-            if (!STORE_CONFIG.PRODUCTS || Object.keys(STORE_CONFIG.PRODUCTS).length === 0) {
-                grid.innerHTML = `
-                    <div style="text-align: center; padding: 3rem; color: var(--gray);">
-                        <i class="fas fa-box-open" style="font-size: 4rem; margin-bottom: 1rem;"></i>
-                        <p>لا توجد منتجات متاحة حالياً</p>
-                        <p style="font-size: 0.9rem;">سيتم تحميل المنتجات قريباً...</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            Object.keys(STORE_CONFIG.PRODUCTS).forEach((key, index) => {
-                const product = STORE_CONFIG.PRODUCTS[key];
-                const availableSizes = product.availableSizes || [];
-                const availableColors = product.availableColors || [];
-                
-                const sizesText = availableSizes.length > 0 
-                    ? `المقاسات: ${availableSizes.join(', ')}` 
-                    : 'لا توجد مقاسات محددة';
-                    
-                const colorsText = availableColors.length > 0 
-                    ? `الألوان: ${availableColors.length}` 
-                    : 'لا توجد ألوان محددة';
+        const colorsText = availableColors.length > 0 
+            ? `الألوان: ${availableColors.length}` 
+            : 'لا توجد ألوان محددة';
 
-                // حساب السعر بعد الخصم مع تمرير مفتاح المنتج
-                const discountInfo = calculateDiscountedPrice(product.price, 1, key);
-                const hasDiscount = discountInfo.hasDiscount || discountInfo.hasPromoDiscount;
-                const discountMessage = createDiscountMessage(key, 1);
-                
-                const card = document.createElement('div');
-                card.className = 'model-card';
-                card.innerHTML = `
-                    <div class="model-badge">${index === 0 ? 'الأكثر مبيعاً' : 'جديد'}</div>
-                    ${createDiscountBadge(product, 1, key)}
-                    <div class="model-image-container">
-                        <img src="${product.image}" alt="${product.name}" class="model-image" onerror="this.src='https://via.placeholder.com/300x300?text=صورة+غير+متاحة'">
+        // حساب السعر بعد الخصم مع تمرير مفتاح المنتج
+        const discountInfo = calculateDiscountedPrice(product.price, 1, key);
+        const hasDiscount = discountInfo.hasDiscount || discountInfo.hasPromoDiscount;
+        const discountMessage = createDiscountMessage(key, 1);
+        
+        const card = document.createElement('div');
+        card.className = 'model-card';
+        card.innerHTML = `
+            <div class="model-badge">${index === 0 ? 'الأكثر مبيعاً' : 'جديد'}</div>
+            ${createDiscountBadge(product, 1, key)}
+            <div class="model-image-container">
+                <img src="" alt="${product.name}" class="model-image" 
+                     data-src="${product.image}" 
+                     onerror="this.src='https://via.placeholder.com/300x300?text=صورة+غير+متاحة'">
+            </div>
+            <div class="model-info">
+                <h3 class="model-name">${product.name}</h3>
+                <p class="model-description">${product.description}</p>
+                <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">
+                    <i class="fas fa-ruler"></i> ${sizesText}
+                </div>
+                <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">
+                    <i class="fas fa-palette"></i> ${colorsText}
+                </div>
+                <div class="model-price">
+                    <i class="fas fa-tag"></i>
+                    ${discountInfo.finalPrice} دج
+                    ${hasDiscount ? `<span class="original-price">${product.price} دج</span>` : ''}
+                </div>
+                <!-- رسالة الدوق الرفيع للمنتجات بدون خصم -->
+                ${!hasDiscount ? `
+                    <div class="discount-info premium-message" style="margin-top: 0.5rem; padding: 0.5rem; font-size: 0.75rem;">
+                        <i class="fas fa-crown"></i>
+                        ${discountMessage}
                     </div>
-                    <div class="model-info">
-                        <h3 class="model-name">${product.name}</h3>
-                        <p class="model-description">${product.description}</p>
-                        <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">
-                            <i class="fas fa-ruler"></i> ${sizesText}
-                        </div>
-                        <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">
-                            <i class="fas fa-palette"></i> ${colorsText}
-                        </div>
-                        <div class="model-price">
-                            <i class="fas fa-tag"></i>
-                            ${discountInfo.finalPrice} دج
-                            ${hasDiscount ? `<span class="original-price">${product.price} دج</span>` : ''}
-                        </div>
-                        <!-- رسالة الدوق الرفيع للمنتجات بدون خصم -->
-                        ${!hasDiscount ? `
-                            <div class="discount-info premium-message" style="margin-top: 0.5rem; padding: 0.5rem; font-size: 0.75rem;">
-                                <i class="fas fa-crown"></i>
-                                ${discountMessage}
-                            </div>
-                        ` : ''}
-                    </div>
-                    <button class="quick-add-btn" onclick="quickAddToCart('${key}')">
-                        <i class="fas fa-cart-plus"></i>
-                    </button>
-                `;
-                
-                card.addEventListener('click', (e) => {
-                    if (!e.target.closest('.quick-add-btn')) {
-                        showProductDetails(key);
-                    }
-                });
-                
-                grid.appendChild(card);
-            });
-            
-            console.log(`✅ تم تحميل ${Object.keys(STORE_CONFIG.PRODUCTS).length} منتج مع نظام الخصم المحسن`);
-        }
-
+                ` : ''}
+            </div>
+            <button class="quick-add-btn" onclick="quickAddToCart('${key}')">
+                <i class="fas fa-cart-plus"></i>
+            </button>
+        `;
+        
+        // تحميل الصورة مع التحسين
+        const imgElement = card.querySelector('.model-image');
+        loadImageWithOptimization(product.image, imgElement);
+        
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.quick-add-btn')) {
+                showProductDetails(key);
+            }
+        });
+        
+        grid.appendChild(card);
+    });
+    
+    console.log(`✅ تم تحميل ${Object.keys(STORE_CONFIG.PRODUCTS).length} منتج مع نظام تحميل الصور المحسن`);
+}
+        
         function updateSelectedProducts() {
             const container = document.getElementById('selectedProducts');
             container.innerHTML = '';
@@ -4300,6 +4342,77 @@ const itemDiscountInfo = calculateDiscountedPrice(item.price, totalQuantity, ite
             managePulseEffects();
         }
 
+          // =============================================================================
+    // 🖼️ نظام تحميل الصور المحسن مع الضغط
+    // =============================================================================
+
+    // دالة محسنة لتحميل الصور مع التحسين
+    function loadImageWithOptimization(url, element, fallbackUrl = 'https://via.placeholder.com/300x300?text=صورة+غير+متاحة') {
+        return new Promise((resolve) => {
+            const img = new Image();
+            
+            img.onload = function() {
+                element.src = url;
+                element.style.opacity = '1';
+                resolve(true);
+            };
+            
+            img.onerror = function() {
+                console.warn('⚠️ فشل تحميل الصورة:', url);
+                element.src = fallbackUrl;
+                element.style.opacity = '1';
+                resolve(false);
+            };
+            
+            // إضافة تأثير تحميل
+            element.style.opacity = '0.3';
+            element.style.transition = 'opacity 0.3s ease';
+            
+            // بدء التحميل
+            img.src = url;
+            
+            // timeout للصور التي تستغرق وقتاً طويلاً
+            setTimeout(() => {
+                if (element.src !== url && element.src !== fallbackUrl) {
+                    element.src = fallbackUrl;
+                    element.style.opacity = '1';
+                    resolve(false);
+                }
+            }, 10000);
+        });
+    }
+
+    // نظام التحميل المتقدم للصور
+    function setupImageLoadingManager() {
+        // تحميل متقدم للصور
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    if (src) {
+                        loadImageWithOptimization(src, img);
+                        img.removeAttribute('data-src');
+                    }
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        // مراقبة جميع الصور ذات data-src
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        });
+    }
+
+    // استدعاء مدير تحميل الصور عند التهيئة
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeApp();
+        setupImageLoadingManager();
+    });
+        
     </script>
 
     <!-- تذييل الصفحة - تم التعديل لدعم الشعار الجديد -->
