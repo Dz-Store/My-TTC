@@ -11,7 +11,8 @@ const STORE_CONFIG = {
         "S2"
       ],
       "availableColors": [
-        "أسود"
+        "أسود",
+        "رمادي"
       ],
       "ageRanges": [
         {
