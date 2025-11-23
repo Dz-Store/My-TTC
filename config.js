@@ -1,40 +1,34 @@
 const STORE_CONFIG = {
   "PRODUCTS": {
-    "5": {
-      "name": "ddssd",
-      "price": 2222,
-      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-1763830282318.jpg",
-      "description": "",
+    "19": {
+      "name": "مودال 1",
+      "price": 8400,
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-19-1763505376624-1000056031.jpg",
+      "description": "dfgh",
       "availableSizes": [
-        "S",
-        "S1",
+        "M",
         "S2"
       ],
       "availableColors": [
         "أسود",
         "رمادي"
+      ]
+    },
+    "20": {
+      "name": "sdegg",
+      "price": 75555,
+      "image": "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-20-1763507188438-1000056027.jpg",
+      "description": "",
+      "availableSizes": [
+        "S1",
+        "XXL"
       ],
-      "ageRanges": [
-        {
-          "ageFrom": "A",
-          "ageTo": "A",
-          "size": "XXXL"
-        }
+      "availableColors": [
+        "كما في الصورة",
+        "أسود"
       ],
-      "colorImages": {
-        "أسود": {
-          "images": [
-            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-أسود-1763830177600.jpg"
-          ],
-          "ageRanges": []
-        },
-        "رمادي": {
-          "images": [
-            "https://raw.githubusercontent.com/Dz-Store/My-TTC/main/images/product-5-رمادي-1763831372225.jpg"
-          ],
-          "ageRanges": []
-        }
-      }
+      "ageRanges": [],
+      "colorImages": {}
     }
   },
   "DELIVERY_PRICES": {
@@ -267,205 +261,70 @@ const STORE_CONFIG = {
       "desk": 550
     },
     "58 - المنيعة": {
-      "home": 900,
+      "home": 1000,
       "desk": 400
     }
   },
   "DISCOUNTS": {
-    "minQuantityForDiscount": 1,
+    "minQuantityForDiscount": 2,
     "discountPerItem": 400,
-    "discountScope": "selected",
-    "discountProducts": [],
-    "promoDiscountProducts": [
-      5
+    "discountProducts": [
+      19
     ],
-    "enableQuantityDiscount": true,
-    "enablePromotionalDiscount": false,
-    "promotionalDiscountPercent": 20,
-    "promotionalDiscountedPrice": null,
-    "promoDiscountScope": "selected",
-    "promoDiscountColors": [
-      1,
-      2
+    "discountScope": "selected",
+    "promoDiscountProducts": [
+      20
     ]
   },
   "STORE_INFO": {
-    "name": "SANIX-DZ",
-    "storeIcon": "👑",
-    "storeTitle": "الملابس الأعلى مبيعا",
-    "tagline": "الملابس الأكثر مبيعا",
+    "name": "إسم المتجر",
+    "tagline": "متجر أفخم الملابس",
     "phoneNumbers": [
       "0671466489",
-      "0551102155"
+      "0792946548"
     ],
-    "facebookUrl": "https://www.facebook.com/share/r/1AUYY5favq/",
-    "instagramUrl": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
-    "messengerUrl": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
-    "viberNumber": "https://www.instagram.com/p/DJCtlffoxj9/?igsh=MWoyaGFkYXRicmJrMQ==",
-    "logo": "https://raw.githubusercontent.com/Dz-Store/WER/main/images/store-logo-1763217953279-Screenshot_20250903-115403_Facebook.jpg",
-    "storeEmail": "benaakrabahcene@gmail.com",
-    "storeDescription": "متجر Kids-Fav يقدم أحدث وأفخم موديلات ملابس الأطفال بتصاميم عصرية وأنيقة تناسب جميع المناسبات",
-    "whatsappUrl": "https://wa.me/213671466489",
-    "whatsappNumber": "213671466489"
+    "storeIcon": "👗🛍️ الشعار",
+    "storeTitle": "وصف لعوان البوتيك",
+    "whatsappNumber": "",
+    "whatsappUrl": ""
   },
   "GOOGLE_SHEETS": {
-    "enabled": true,
-    "scriptUrl": "https://script.google.com/macros/s/AKfycbzw7NSduBIcVc2ugUKF5EtpmAej7bo7bDFKj0K-aHeXaYmqWmoUYtvOPGX6TjRKKN78/exec",
-    "ordersSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
-    "productsSheetId": "1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw",
-    "url": "https://docs.google.com/spreadsheets/d/1ostnWuYQnG4KwkbKCRW1MHw5wJNBTAA8NsvIh7RIfx8/edit",
-    "autoUpdate": true,
-    "description": "جدول الطلبيات"
+    "url": "https://docs.google.com/spreadsheets/d/1U3ak4PZfAZR7oPUquLUETsv-ZhzrXR9v5XYSdTUeOxw/edit?gid=1320228317#gid=1320228317",
+    "autoUpdate": true
   },
   "AVAILABLE_COLORS": [
+    "كما في الصورة",
     "أبيض",
     "أسود",
-    "أحمر",
-    "أزرق",
-    "أخضر",
-    "وردي",
     "رمادي",
-    "أصفر"
+    "أزرق",
+    "أحمر",
+    "أخضر",
+    "زهري",
+    "بنفسجي"
   ],
   "AVAILABLE_SIZES": [
-    "S",
     "S1",
     "S2",
-    "S3",
     "M",
-    "M1",
-    "M2",
-    "M3",
     "L",
     "XL",
-    "XXL",
-    "XXXL",
-    "38",
-    "39",
-    "40",
-    "41",
-    "42",
-    "43",
-    "44",
-    "45",
-    "45",
-    "46",
-    "47",
-    "48",
-    "49"
+    "XXL"
   ],
   "SIZE_GUIDE": {
-    "38": {
-      "heightFrom": 150,
-      "heightTo": 160,
-      "weightFrom": 50,
-      "weightTo": 70,
-      "enabled": false
-    },
-    "39": {
-      "heightFrom": 152,
-      "heightTo": 162,
-      "weightFrom": 53,
-      "weightTo": 74,
-      "enabled": false
-    },
-    "40": {
-      "heightFrom": 154,
-      "heightTo": 164,
-      "weightFrom": 56,
-      "weightTo": 78,
-      "enabled": false
-    },
-    "41": {
-      "heightFrom": 156,
-      "heightTo": 166,
-      "weightFrom": 59,
-      "weightTo": 82,
-      "enabled": false
-    },
-    "42": {
-      "heightFrom": 158,
-      "heightTo": 168,
-      "weightFrom": 62,
-      "weightTo": 86,
-      "enabled": false
-    },
-    "43": {
-      "heightFrom": 160,
-      "heightTo": 170,
-      "weightFrom": 65,
-      "weightTo": 90,
-      "enabled": false
-    },
-    "44": {
-      "heightFrom": 162,
-      "heightTo": 172,
-      "weightFrom": 68,
-      "weightTo": 94,
-      "enabled": false
-    },
-    "45": {
-      "heightFrom": 164,
-      "heightTo": 174,
-      "weightFrom": 71,
-      "weightTo": 98,
-      "enabled": false
-    },
-    "46": {
-      "heightFrom": 166,
-      "heightTo": 176,
-      "weightFrom": 74,
-      "weightTo": 102,
-      "enabled": false
-    },
-    "47": {
-      "heightFrom": 168,
-      "heightTo": 178,
-      "weightFrom": 77,
-      "weightTo": 106,
-      "enabled": false
-    },
-    "48": {
-      "heightFrom": 170,
-      "heightTo": 180,
-      "weightFrom": 80,
-      "weightTo": 110,
-      "enabled": false
-    },
-    "49": {
-      "heightFrom": 172,
-      "heightTo": 182,
-      "weightFrom": 83,
-      "weightTo": 114,
-      "enabled": false
-    },
-    "S": {
-      "heightFrom": 160,
-      "heightTo": 175,
-      "weightFrom": 50,
-      "weightTo": 65,
-      "enabled": true
-    },
     "S1": {
       "heightFrom": 160,
       "heightTo": 180,
       "weightFrom": 50,
       "weightTo": 80,
-      "enabled": false
+      "enabled": true
     },
     "S2": {
       "heightFrom": 160,
       "heightTo": 180,
       "weightFrom": 50,
       "weightTo": 80,
-      "enabled": false
-    },
-    "S3": {
-      "heightFrom": 160,
-      "heightTo": 180,
-      "weightFrom": 50,
-      "weightTo": 80,
-      "enabled": false
+      "enabled": true
     },
     "M": {
       "heightFrom": 170,
@@ -473,27 +332,6 @@ const STORE_CONFIG = {
       "weightFrom": 65,
       "weightTo": 80,
       "enabled": true
-    },
-    "M1": {
-      "heightFrom": 160,
-      "heightTo": 180,
-      "weightFrom": 50,
-      "weightTo": 80,
-      "enabled": false
-    },
-    "M2": {
-      "heightFrom": 160,
-      "heightTo": 180,
-      "weightFrom": 50,
-      "weightTo": 80,
-      "enabled": false
-    },
-    "M3": {
-      "heightFrom": 160,
-      "heightTo": 180,
-      "weightFrom": 50,
-      "weightTo": 80,
-      "enabled": false
     },
     "L": {
       "heightFrom": 180,
@@ -514,99 +352,16 @@ const STORE_CONFIG = {
       "heightTo": 205,
       "weightFrom": 95,
       "weightTo": 120,
-      "enabled": false
-    },
-    "XXXL": {
-      "heightFrom": 195,
-      "heightTo": 210,
-      "weightFrom": 105,
-      "weightTo": 140,
-      "enabled": false
+      "enabled": true
     }
   },
-  "COLORS": {
-    "1": {
-      "name": "الاحمر",
-      "price": 3000,
-      "images": [
-        "https://raw.githubusercontent.com/Dz-Store/WER/main/images/color-1-1762969529778-1000043662.jpg"
-      ],
-      "description": "مودال جيد بمواصفات أوربية",
-      "availableSizes": [
-        "S",
-        "S1"
-      ],
-      "ageRanges": [
-        {
-          "ageFrom": 2,
-          "ageTo": 5,
-          "size": "S"
-        },
-        {
-          "ageFrom": 6,
-          "ageTo": 8,
-          "size": "S1"
-        }
-      ]
-    },
-    "2": {
-      "name": "ازرق",
-      "price": 3000,
-      "images": [
-        "https://raw.githubusercontent.com/Dz-Store/WER/main/images/color-2-1762969972266-1000041608.jpg"
-      ],
-      "description": "مودال بمواصفات اوربية",
-      "availableSizes": [
-        "S2",
-        "S3"
-      ],
-      "ageRanges": [
-        {
-          "ageFrom": 6,
-          "ageTo": 8,
-          "size": "S2"
-        },
-        {
-          "ageFrom": 9,
-          "ageTo": 11,
-          "size": "S3"
-        }
-      ]
-    }
-  },
-  "ADMIN_SETTINGS": {
-    "password": "1234",
-    "autoSync": true,
-    "backupEnabled": true,
-    "notifications": true,
-    "lastUpdated": "2024-11-12T10:00:00.000Z"
-  },
-  "COLOR_IMAGES_MANAGEMENT": {
-    "enabled": true,
-    "maxImagesPerColor": 10,
-    "allowedFormats": [
-      "jpg",
-      "jpeg",
-      "png",
-      "webp"
-    ]
-  },
-  "AGE_RANGES_MANAGEMENT": {
-    "enabled": true,
-    "minAge": 2,
-    "maxAge": 15
-  },
-  "GITHUB_INTEGRATION": {
-    "enabled": true,
-    "defaultRepo": "Dz-Store/WER",
-    "defaultBranch": "main",
-    "defaultFolder": "images"
-  },
-  "SYSTEM_SETTINGS": {
-    "autoBackup": true,
-    "backupInterval": 24,
-    "maxBackups": 30,
-    "enableNotifications": true,
-    "enableAnalytics": true
+  "AGE_SIZES": {
+    "6": "S1",
+    "7": "S2",
+    "8": "M",
+    "9": "L",
+    "10": "XL",
+    "11": "XXL",
+    "12": "S4"
   }
 };
